@@ -1,0 +1,4 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateCuentaAlumno`(in newuser varchar(20), in contr varchar(15), in idAl varchar(10))
+BEGIN
+	update cuentas set usuario=newuser , contraseña=contr  where idAlumno=idAl and administrador='no';
+END

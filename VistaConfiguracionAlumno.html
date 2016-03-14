@@ -1,0 +1,256 @@
+    <!DOCTYPE html>
+    <?php 
+            session_start();
+  ?>
+    <html class="no-js">
+        <head>
+            <meta charset="utf-8">
+            <meta name ="author" content ="Plautila Vasquez Martinez, Cosijopii Garcia Garcia">
+            <link rel="stylesheet" href="resources/css/EstiloConfiguracion.css">
+            <title>Configuración</title>
+            <link rel="stylesheet" href="resources/plantilla/css/bootstrap.min.css">
+            <link rel="stylesheet" href="resources/plantilla/css/bootstrap-theme.min.css">
+            <link rel="stylesheet" href="resources/plantilla/css/templatemo-style.css">
+            <link rel="stylesheet" href="resources/plantilla/css/font-awesome.min.css">
+
+            <!-- Favicon and touch icons -->
+            <link rel="shortcut icon" href="resources/ico/Sgc16x16.png">
+            <link rel="apple-touch-icon-precomposed" sizes="144x144" href="resources/ico/Sgc144x144.png">
+            <link rel="apple-touch-icon-precomposed" sizes="114x114" href="resources/ico/Sgc114x114png">
+            <link rel="apple-touch-icon-precomposed" sizes="72x72" href="resources/ico/Sgc72x72.png">
+            <link rel="apple-touch-icon-precomposed" href="resources/ico/Sgc57x57.png">
+            
+            <script src="resources/plantilla/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+
+
+
+ <script src="resources/js/jquery-2.1.4.js"></script>
+
+     <script >
+     function vacio () {
+          if ($("#Contraseña").val()=="" &&
+            $("#Usuario").val()=="" ) {
+          //$("#mensaje").val("error introdusca todos los datos")
+
+            return true;
+
+          } else{
+            return false;
+
+          }
+        }
+
+        function mensaje (dato) {
+          $("#mensaje").html(dato);
+          $("#mensaje").fadeOut(3000);
+          $("#mensaje").fadeIn(2000);
+          $("#mensaje").hide("slow"); 
+        }
+
+        var p="";
+        var u=""; 
+        var id="";
+        var carrera="";
+
+      $(document).ready(function () {
+        
+        $.post("resources/php/session.php",{op:"op4",type:"alumno"},function( data ){
+            u=data.nombre;
+            carrera=data.carrera;
+            $("#sesion").html("Bienvenido "+u);   
+
+        },'json');
+         
+
+
+        $("#Guardar").click(function(evento){
+          evento.preventDefault();
+          //alert(u);
+          if(vacio()==false){
+            $.post("resources/php/ControlConfiguracionAdminProfesor.php",{operacion:"buscarIDAlumno",usuario:u, carrera:carrera},function( data ){
+                   id=data.idAlumno;
+                   $("#mensaje").load("resources/php/ControlConfiguracionAdminProfesor.php",{operacion:"guardarCuentaAlumno",usuario:$("#Usuario").val(),contraseña:$("#Contraseña").val(),idalumno:id}, function () {
+                        mensaje("Cambios guardados con exito");
+                        $("#mensaje").css("color","#000");
+                        window.location.href='index.html';
+                 
+            });
+
+                },'json');
+
+             
+
+            }else{
+                mensaje("no puede dejar cajas de texto vacias");
+                $("#mensaje").css("color","red");
+            }
+
+       
+
+
+        });
+
+        $('ul.nav li.dropdown').hover(function() {
+        $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
+        }, function() {
+        $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
+        });
+
+
+            
+          });
+
+     </script>
+
+        </head>
+        <body>
+      
+        <header class="site-header" id="top">
+            <nav class="navbar navbar-default navbar-fixed-top">
+                <div class="container">
+                    <div class="row">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                              <i class="fa fa-bars"></i>
+                            </button>
+                            <div class="logo-wrapper">
+                                <a class="navbar-brand" href="index.html">
+                                    SGC<em>Unistmo</em>
+                                    <span class="logo-s"></span>
+                                </a>
+                            </div>  
+                        </div>
+                        <div class="collapse navbar-collapse" id="main-menu">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a href="index.html">Cerrar Sesion</a>
+
+                                </li>
+                                <li><a href="VistaConfiguracionAlumno.html">Configuración</a></li>
+
+                                 <li class="dropdown"><a href="VistaAlumno.html"  class="dropdown-toggle" data-toggle="dropdown">Menu <b class="caret"></b> </a>
+                                  <ul class="dropdown-menu">
+                                    <li><a href="VistaAlumno.html" >Vista Principal</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="VistaAlumnoCalificaciones.html">Calificaciones</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="VistaAlumnoConsulta.html">Consultas</a></li>
+                                
+                                </ul>
+                            </li>
+
+                            </ul>
+                        </div>
+                    </div> 
+                </div>
+            </nav>
+        </header>
+
+       
+
+
+          <div class="main-content">
+     
+                    
+      <div class="container margen">
+         <div class="col-md-12 col-sm-12 col-xs-12">
+                
+                <h3 id="sesion" style="text-align: right; margin-right: 0px; "></h3>
+              
+          </div>  
+
+            <div class="container" style="margin-top: 70px; margin-bottom: 25px;">
+              <div class="panel-group">
+                <div class="panel panel-primary">
+                  <div class="panel-heading"><center><h3>Configuracion</h3> <br> <h5>Cambio de contraseña</h5></center></div>
+                  <div class="panel-body" style="margin-top: 20px; margin-bottom: 20px;">
+
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="col-md-3 col-xs-12 col-sm-3"></div>
+
+                      <div class="col-md-4 col-xs-12 col-sm-4">
+                         
+                         <center>
+                           
+                           <form class="form-horizontal">
+                              
+
+                                <div class="form-group">
+                                    <label class="control-label col-xs-3" style="margin-top: 20px;">Usuario:</label>
+                                    <div class="col-xs-9">
+                                        <input type="text" style="margin-top: 20px;" class="form-control" id="Usuario" placeholder="Nuevo Usuario">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-xs-3">Contraseña:</label>
+                                    <div class="col-xs-9">
+                                        <input type="password" id="Contraseña" class="form-control" placeholder="Nueva Contraseña">
+                                    </div>
+                                </div>
+
+                                <br>
+
+                                <div class="form-group">
+                                    <div class="col-xs-offset-3 col-xs-9">
+                                          <button type="button" id="Guardar" class="btn btn-primary">
+                                                      <span class="glyphicon glyphicon-floppy-disk"></span>  Guardar</button>
+                                        
+                                    </div>
+                                </div>
+
+                            </form>
+                            
+                         </center>
+                          
+                        </div>
+                    <div class="col-md-4 col-xs-12 col-sm-4"></div>
+
+                     
+                    </div>
+
+                     <div class="col-md-12 col-sm-12 col-xs-12" style="margin-top: 0px;">
+                                  <div class="col-md-4 col-xs-12 col-sm-4" style="margin-top: 0px;" ></div>
+
+                                  <div class="col-md-4 col-xs-12 col-sm-4" style="margin-top: 0px;" >
+                                   
+                                      <div  id="claseboton" class="boton" style="margin-top: 0px;" ><p id="mensaje" class="men"></p></div>
+                                 
+
+                                  </div>
+
+                                   <div class="col-md-4 col-xs-12 col-sm-4" style="margin-top: 0px;"></div>
+
+                    </div>
+                       
+
+
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div><!-- container END -->
+          
+        </div><!-- main content END -->
+
+          <footer id="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-sm-12 ">
+                        <p class="copyright">Copyright &copy; 2015 <a href="#">Universidad del Istmo</a></p>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-sm-12">
+                        <ul class="social">
+                            <li><a href="#" class="fa fa-facebook"></a></li>
+                            <li><a href="#" class="fa fa-twitter"></a></li>
+                        
+                        </ul>
+                    </div>
+                  </div>
+                </div>
+          </footer> 
+            <script src="resources/plantilla/js/vendor/jquery-1.11.0.min.js"></script>
+            <script>window.jQuery || document.write('<script src="resources/plantilla/js/vendor/jquery-1.11.0.min.js"><\/script>')</script>
+            <script src="resources/plantilla/js/vendor/bootstrap.js"></script>
+            <script src="resources/plantilla/js/main.js"></script>
+        </body>
+    </html>

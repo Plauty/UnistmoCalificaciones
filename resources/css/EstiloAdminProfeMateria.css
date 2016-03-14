@@ -1,0 +1,59 @@
+.tabla{
+    padding: 10px;
+}
+.uno{
+   
+    padding-left: 25px;
+    padding-right:25px;
+}
+
+.Config{text-align: right;
+padding-left: 10px;
+padding-right: 10px;}
+
+.medio{
+   padding-left: 10px;
+padding-right: 10px; 
+}
+
+
+.botones{
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.tam{
+	width: 30px;
+	height: 15px;
+}
+
+.color{
+    opacity: 0.8 !important; 
+    color: #fff !important;
+
+}
+h1{
+    color: #000000 !important;
+}
+
+h4{
+    color: #000000 !important;
+}
+
+.boton{
+    font: bold 15px Arial, sans-serif;
+    border-radius: 3px;
+    box-shadow: 0px 4px rgba(0, 0, 0, 0.2);
+   margin-left: 20px;
+   margin-right: 0px;
+   text-align: center;
+    background: #FF6666;
+    color: #000;
+    line-height: 36px;
+    transition: all 2s; 
+}
+
+
+.fila-base{ display: none; }
+.eliminar{ cursor: pointer; color: #000; }

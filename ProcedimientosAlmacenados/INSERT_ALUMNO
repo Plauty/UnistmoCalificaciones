@@ -1,0 +1,5 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `INSERT_ALUMNO`( IN IdAlumno  Varchar(45) , IN Nombre  Varchar(45) , IN ApellidoPaterno  Varchar(45) , IN ApellidoMaterno  Varchar(45) , IN Telefono  Varchar(45) , IN Email  Varchar(45) , IN Licenciatura  Varchar(45) , IN Semestre  Varchar(45) , IN Grupo  Varchar(45) , IN Estado  Varchar(45) )
+BEGIN
+	INSERT INTO alumnos ( idAlumno,nombre,apellidoPaterno,apellidoMaterno,telefono,email,licenciatura,semestre,grupo,estado) VALUES (IdAlumno,Nombre,ApellidoPaterno,ApellidoMaterno,Telefono,Email,Licenciatura,Semestre,Grupo,Estado); 
+	INSERT INTO cuentas(usuario,contraseña,idAlumno,administrador) values(idAlumno,idAlumno,idAlumno,"no");
+END

@@ -1,0 +1,63 @@
+.tabla{
+    padding: 10px;
+}
+.uno{
+   
+    padding-left: 25px;
+    padding-right:25px;
+}
+
+.Config{text-align: right;
+padding-left: 10px;
+padding-right: 10px;}
+
+.medio{
+   padding-left: 10px;
+padding-right: 10px; 
+}
+
+
+.botones{
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.tam{
+	width: 30px;
+	height: 15px;
+}
+
+.nom2{
+	padding-left: 25px;
+	padding-right: 25px;
+
+}
+.nom{
+	padding-left: 48px;
+	padding-right: 15px;
+
+}
+
+.tablaNom{
+	margin-left: 78px;
+}
+
+.bloque{
+    display: inline-block;
+}
+
+.color{
+    opacity: 0.8 !important; 
+    color: #fff !important;
+
+}
+
+h1{
+    color: #000000 !important;
+}
+
+h4{
+    color: #000000 !important;
+}
+

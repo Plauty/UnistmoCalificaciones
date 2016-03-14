@@ -1,0 +1,4 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `INSERT_A_C_M`(IN idAlumno varchar(10),in idMaterias int, in idCalificaciones varchar(45))
+BEGIN
+insert into alumno_calificacion_materia values(idAlumno,idMaterias,idCalificaciones);
+END

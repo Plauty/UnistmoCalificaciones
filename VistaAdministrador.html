@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+ <?php 
+            session_start();
+  ?>
+<html class="no-js">
+    <head>
+        <meta charset="utf-8">
+        <meta name ="author" content ="Plautila Vasquez Martinez, Cosijopii Garcia Garcia">
+        <link rel="stylesheet" href="resources/css/EstiloAdmin.css">
+        <title>Administrador</title>
+        <link rel="stylesheet" href="resources/plantilla/css/bootstrap.min.css">
+        <link rel="stylesheet" href="resources/plantilla/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="resources/plantilla/css/templatemo-style.css">
+        <link rel="stylesheet" href="resources/plantilla/css/font-awesome.min.css">
+        <!-- Favicon and touch icons -->
+        <link rel="shortcut icon" href="resources/ico/Sgc16x16.png">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="resources/ico/Sgc144x144.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="resources/ico/Sgc114x114png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="resources/ico/Sgc72x72.png">
+        <link rel="apple-touch-icon-precomposed" href="resources/ico/Sgc57x57.png">
+
+        <script src="resources/plantilla/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+
+
+
+
+ <script src="resources/js/jquery-2.1.4.js"></script>
+
+
+ <script >
+
+  $(document).ready(function () {
+
+
+    var p;
+        var u;  
+        $.post("resources/php/session.php",{op:"op2"},function( data ){
+           p=data.pas;
+           u=data.user;   
+            $("#sesion").html("Bienvenido "+data.nombre);      
+        },'json');
+
+              
+        $("#ImgAlum").hover(function(){
+          $("#Alum").css("background-color", "#097B62");
+          $("#Alum").css("color","#000000");
+          $("#Alum").css("font-size","15px");
+          }, function(){
+            $("#Alum").css("background-color", "#51D2B7");
+            $("#Alum").css("color","#FFFFFF");
+            $("#Alum").css("font-size","13px");
+        });   
+
+    
+
+
+        $("#ImgProf").hover(function(){
+          $("#Prof").css("background-color", "#097B62");
+          $("#Prof").css("color","#000000");
+          $("#Prof").css("font-size","15px");
+          }, function(){
+            $("#Prof").css("background-color", "#51D2B7");
+            $("#Prof").css("color","#FFFFFF");
+            $("#Prof").css("font-size","13px");
+        }); 
+
+        $("#ImgProfMateria").hover(function(){
+          $("#Materia").css("background-color", "#097B62");
+          $("#Materia").css("color","#000000");
+          $("#Materia").css("font-size","15px");
+          }, function(){
+            $("#Materia").css("background-color", "#51D2B7");
+            $("#Materia").css("color","#FFFFFF");
+            $("#Materia").css("font-size","13px");
+        });  
+
+            $("#ImgArchivo").hover(function(){
+          $("#Archivo").css("background-color", "#097B62");
+          $("#Archivo").css("color","#000000");
+          $("#Archivo").css("font-size","15px");
+          }, function(){
+            $("#Archivo").css("background-color", "#51D2B7");
+            $("#Archivo").css("color","#FFFFFF");
+            $("#Archivo").css("font-size","13px");
+        }); 
+
+      $('ul.nav li.dropdown').hover(function() {
+        $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
+      }, function() {
+        $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
+      });
+         
+
+      });
+
+ </script>
+
+    </head>
+    <body>
+  
+    <header class="site-header" id="top">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="row">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                          <i class="fa fa-bars"></i>
+                        </button>
+                        <div class="logo-wrapper">
+                            <a class="navbar-brand" href="index.html">
+                                SGC<em>Unistmo</em>
+                                <span class="logo-s"></span>
+                            </a>
+                        </div>  
+                    </div>
+                    <div class="collapse navbar-collapse" id="main-menu">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="index.html">Cerrar Sesion</a>
+
+                            </li>
+                            <li><a href="VistaConfiguracion.html">Configuración</a></li>
+
+                            <li class="dropdown"><a href="VistaAdministrador.html"  class="dropdown-toggle" data-toggle="dropdown">Menu <b class="caret"></b> </a>
+                              <ul class="dropdown-menu">
+                                <li><a href="VistaAdministrador.html" >Vista Principal</a></li>
+                                <li class="divider"></li>
+                                <li><a href="VistaAdministradorAlumno.html">Alumno</a></li>
+                                <li class="divider"></li>
+                                <li><a href="VistaAdministradorProfesor.html">Profesor</a></li>
+                                <li class="divider"></li>
+                                <li><a href="VistaAdministradorProfesorMateria.html">Asignar materias</a></li>
+                                <li class="divider"></li>
+                                <li><a href="VistaSubirArchivos.html">Subir archivos</a></li>
+                              </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div> 
+            </div>
+        </nav>
+    </header>
+
+    
+
+
+
+    <div class="main-content">
+    
+      <div class="container">
+          <div class="col-md-12 col-sm-12 col-xs-12">
+                
+                <h3 id="sesion" style="text-align: right; margin-right: 0px; "></h3>
+              
+          </div>  
+
+      <div class="container" style="margin-top: 70px; margin-bottom: 40px;">
+
+        <div class="panel-group">
+          <div class="panel panel-primary">
+            <div class="panel-heading"><center><h3>Selección</h3></center></div>
+            <div class="panel-body" style="margin-top: 35px; margin-bottom: 35px;">
+
+
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="col-md-3 col-xs-12 col-sm-3">
+                     <a href="VistaAdministradorAlumno.html"><div class="profile-header-container">   
+                        <div class="profile-header-img">
+                         
+                                <img class="img-circle" id="ImgAlum" src="resources/img/appIcons/alumno2.png" onmouseout="this.style.opacity=1;this.filters.alpha.opacity='100';" onmouseover="this.style.opacity=0.7;this.filters.alpha.opacity='90';">
+                                <!-- badge -->
+                                <div class="rank-label-container">
+                                    <span class="label label-default rank-label" id="Alum">Alumno</span>
+                                </div>
+                        </div>
+                      </div> </a>
+                </div>
+
+                <div class="col-md-3 col-xs-12 col-sm-3" >
+                  <a href="VistaAdministradorProfesor.html"><div class="profile-header-container2">   
+                          <div class="profile-header-img2">
+                                  <img class="img-circle" id="ImgProf" src="resources/img/appIcons/maestro3.png" onmouseout="this.style.opacity=1;this.filters.alpha.opacity='100';" onmouseover="this.style.opacity=0.7;this.filters.alpha.opacity='90';">
+                                  <!-- badge -->
+                                  <div class="rank-label-container2">
+                                      <span class="label label-default rank-label" id="Prof">Profesor</span>
+                                  </div>
+                              </div>
+                          </div> </a>
+                </div>
+
+                <div class="col-md-3 col-xs-12 col-sm-3">
+                    <a href="VistaAdministradorProfesorMateria.html"><div class="profile-header-container2">   
+                          <div class="profile-header-img2">
+                                  <img class="img-circle" id="ImgProfMateria" src="resources/img/appIcons/asignarMateria.png" onmouseout="this.style.opacity=1;this.filters.alpha.opacity='100';" onmouseover="this.style.opacity=0.7;this.filters.alpha.opacity='90';">
+                                  <!-- badge -->
+                                  <div class="rank-label-container2">
+                                      <span class="label label-default rank-label" id="Materia">Asignar Materia</span>
+                                  </div>
+                              </div>
+                          </div> </a>
+
+                </div>
+
+                <div class="col-md-3 col-xs-12 col-sm-3">
+                    <a href="VistaSubirArchivos.html"><div class="profile-header-container2">   
+                          <div class="profile-header-img2">
+                                  <img class="img-circle" id="ImgArchivo" src="resources/img/appIcons/SubirArchivo.png" onmouseout="this.style.opacity=1;this.filters.alpha.opacity='100';" onmouseover="this.style.opacity=0.7;this.filters.alpha.opacity='90';">
+                                  <!-- badge -->
+                                  <div class="rank-label-container2">
+                                      <span class="label label-default rank-label" id="Archivo">Subir Archivo</span>
+                                  </div>
+                              </div>
+                          </div> </a>
+
+                </div>
+
+            </div>
+
+
+            </div>
+          </div>
+        </div>
+
+
+
+      </div>
+      </div><!-- container END -->
+      
+    </div><!-- main content END -->
+
+      <footer id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-sm-12 ">
+                    <p class="copyright">Copyright &copy; 2015 <a href="#">Universidad del Istmo</a></p>
+                </div>
+                <div class="col-md-6 col-sm-6 col-sm-12">
+                    <ul class="social">
+                        <li><a href="#" class="fa fa-facebook"></a></li>
+                        <li><a href="#" class="fa fa-twitter"></a></li>
+                      
+                    </ul>
+                </div>
+              </div>
+            </div>
+      </footer> 
+        <script src="resources/plantilla/js/vendor/jquery-1.11.0.min.js"></script>
+        <script>window.jQuery || document.write('<script src="resources/plantilla/js/vendor/jquery-1.11.0.min.js"><\/script>')</script>
+        <script src="resources/plantilla/js/vendor/bootstrap.js"></script>
+        <script src="resources/plantilla/js/main.js"></script>
+    </body>
+</html>

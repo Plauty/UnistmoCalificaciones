@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+ <?php 
+            session_start();
+  ?>
+<html class="no-js">
+    <head>
+        <meta charset="utf-8">
+        <meta charset = "utf-8"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name ="author" content ="Plautila Vasquez Martinez, Cosijopii Garcia Garcia">
+        <link rel="stylesheet" href="resources/css/EstiloAdminAlumno.css">
+        <title>Registro de Alumnos</title>
+        <link rel="stylesheet" href="resources/plantilla/css/bootstrap.min.css">
+        <link rel="stylesheet" href="resources/plantilla/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="resources/plantilla/css/templatemo-style.css">
+        <link rel="stylesheet" href="resources/plantilla/css/font-awesome.min.css">
+        <link rel="stylesheet" href="resources/css/Style-error.css">
+
+
+        
+        <!-- Favicon and touch icons -->
+        <link rel="shortcut icon" href="resources/ico/Sgc16x16.png">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="resources/ico/Sgc144x144.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="resources/ico/Sgc114x114png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="resources/ico/Sgc72x72.png">
+        <link rel="apple-touch-icon-precomposed" href="resources/ico/Sgc57x57.png">
+        <style type="text/css">
+
+  input:required:invalid, input:focus:invalid {
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAeVJREFUeNqkU01oE1EQ/mazSTdRmqSxLVSJVKU9RYoHD8WfHr16kh5EFA8eSy6hXrwUPBSKZ6E9V1CU4tGf0DZWDEQrGkhprRDbCvlpavan3ezu+LLSUnADLZnHwHvzmJlvvpkhZkY7IqFNaTuAfPhhP/8Uo87SGSaDsP27hgYM/lUpy6lHdqsAtM+BPfvqKp3ufYKwcgmWCug6oKmrrG3PoaqngWjdd/922hOBs5C/jJA6x7AiUt8VYVUAVQXXShfIqCYRMZO8/N1N+B8H1sOUwivpSUSVCJ2MAjtVwBAIdv+AQkHQqbOgc+fBvorjyQENDcch16/BtkQdAlC4E6jrYHGgGU18Io3gmhzJuwub6/fQJYNi/YBpCifhbDaAPXFvCBVxXbvfbNGFeN8DkjogWAd8DljV3KRutcEAeHMN/HXZ4p9bhncJHCyhNx52R0Kv/XNuQvYBnM+CP7xddXL5KaJw0TMAF8qjnMvegeK/SLHubhpKDKIrJDlvXoMX3y9xcSMZyBQ+tpyk5hzsa2Ns7LGdfWdbL6fZvHn92d7dgROH/730YBLtiZmEdGPkFnhX4kxmjVe2xgPfCtrRd6GHRtEh9zsL8xVe+pwSzj+OtwvletZZ/wLeKD71L+ZeHHWZ/gowABkp7AwwnEjFAAAAAElFTkSuQmCC);
+    background-position: right ;
+    background-repeat: no-repeat;
+    -moz-box-shadow: none;
+  }
+  input:required:valid {
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAepJREFUeNrEk79PFEEUx9/uDDd7v/AAQQnEQokmJCRGwc7/QeM/YGVxsZJQYI/EhCChICYmUJigNBSGzobQaI5SaYRw6imne0d2D/bYmZ3dGd+YQKEHYiyc5GUyb3Y+77vfeWNpreFfhvXfAWAAJtbKi7dff1rWK9vPHx3mThP2Iaipk5EzTg8Qmru38H7izmkFHAF4WH1R52654PR0Oamzj2dKxYt/Bbg1OPZuY3d9aU82VGem/5LtnJscLxWzfzRxaWNqWJP0XUadIbSzu5DuvUJpzq7sfYBKsP1GJeLB+PWpt8cCXm4+2+zLXx4guKiLXWA2Nc5ChOuacMEPv20FkT+dIawyenVi5VcAbcigWzXLeNiDRCdwId0LFm5IUMBIBgrp8wOEsFlfeCGm23/zoBZWn9a4C314A1nCoM1OAVccuGyCkPs/P+pIdVIOkG9pIh6YlyqCrwhRKD3GygK9PUBImIQQxRi4b2O+JcCLg8+e8NZiLVEygwCrWpYF0jQJziYU/ho2TUuCPTn8hHcQNuZy1/94sAMOzQHDeqaij7Cd8Dt8CatGhX3iWxgtFW/m29pnUjR7TSQcRCIAVW1FSr6KAVYdi+5Pj8yunviYHq7f72po3Y9dbi7CxzDO1+duzCXH9cEPAQYAhJELY/AqBtwAAAAASUVORK5CYII=);
+    background-position: right;
+    background-repeat: no-repeat;
+  }
+
+</style>
+        <script src="resources/plantilla/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+
+
+
+ <script src="resources/js/jquery-2.1.4.js"></script>
+
+ <script >
+
+ var update=0;
+
+
+function vacio () {
+  if ($("#txtNombre").val()=="" &&
+    $("#txtEmail").val()=="" &&
+    $("#txtApPaterno").val()=="" &&
+    $("#txtApMaterno").val()=="" &&
+    $("#txtTelefono").val()=="" &&
+    $("#txtMatricula").val()=="") {
+    return true;
+
+  } else{
+    return false;
+
+  }
+}
+
+
+    function fillselect (e) {
+      $("#cmbGrupos").empty();
+      var data=[5,6,8,9];
+      for (var i = 0; i < 4; i++) {
+
+           $("#cmbGrupos").append("<option>"+(data[i]+e)+"</option>");
+
+           }
+
+    }
+    function cleanTxt () {
+    $("#txtNombre").val("");
+    $("#txtEmail").val("");
+    $("#txtApPaterno").val("");
+    $("#txtApMaterno").val("");
+    $("#txtTelefono").val("");
+    $("#txtMatricula").val("");
+} 
+
+    function changeGpo () {
+       var s=$("#cmbSemestres option:selected").text();
+    switch (s){
+      case 'Primero':
+        fillselect(100);
+        break;
+      case 'Segundo':
+        fillselect(200);
+        break;
+      case 'Tercero':
+        fillselect(300);
+        break;
+      case 'Cuarto':
+        fillselect(400);
+        break;
+      case 'Quinto':
+        fillselect(500);
+        break;
+      case 'Sexto':
+        fillselect(600);
+        break;
+      case 'Septimo':
+        fillselect(700);
+        break;
+      case 'Octavo':
+        fillselect(800);
+        break;
+      case 'Noveno':
+        fillselect(900);
+        break;
+      case 'Decimo':
+        fillselect(1000);
+        break;
+    
+    }
+    }
+
+    function getIdCarrera (car) {
+     var exmill=new RegExp("[0-9][0-9][0-9][0-9]");
+    var g2;
+    if(exmill.test(car)){
+      g2=car.substring(3,4);
+    }else{
+     g2=car.substring(2,3);
+    }
+    switch(g2){
+      case'8':
+      $("#cmbCarreras").val("8");
+      break;
+     case '5':
+      $("#cmbCarreras").val("5");
+      break;
+      case '6':
+      $("#cmbCarreras").val("6");
+      break;
+      case '9':
+      $("#cmbCarreras").val("9");
+      break;
+       
+    }
+
+      }
+    
+
+      function isObjEmpty (obj) {
+          for(var name in obj){
+            return false;
+          }
+          return true;
+        }
+
+    function mensaje (dato) {
+  $("#mensaje").html(dato);
+  $("#mensaje").fadeOut(3000);
+  $("#mensaje").hide("slow"); 
+
+}
+    function mensaje2 (dato) {
+  $("#mensaje2").html(dato);
+  $("#mensaje2").fadeOut(3000);
+  $("#mensaje2").hide("slow"); 
+
+}
+
+function validate () {
+  var i=0;
+  $(" input:required:invalid ").each(function() {
+    i++;
+    console.log(i);
+  });
+  if(i==0){
+    return true;
+  }else{
+    return false;
+  }
+
+}
+  $(document).ready(function () {
+    var p;
+        var u;  
+        $.post("resources/php/session.php",{op:"op2"},function( data ){
+           p=data.pas;
+           u=data.user;   
+            $("#sesion").html("Bienvenido "+data.nombre);      
+        },'json');
+
+
+
+ $("#btnEliminar").prop('disabled',true);
+ $("#btnLimpiar").prop('disabled',true);
+  $("#cmbGrupos").change(function() {
+    var g=$("#cmbGrupos option:selected").text();
+    var exmill=new RegExp("[0-9][0-9][0-9][0-9]");
+    var g2;
+    if(exmill.test(g)){
+      g2=g.substring(3,4);
+    }else{
+     g2=g.substring(2,3);
+    }
+    switch(g2){
+      case'8':
+      $("#cmbCarreras").val("8");
+      break;
+     case '5':
+      $("#cmbCarreras").val("5");
+      break;
+      case '6':
+      $("#cmbCarreras").val("6");
+      break;
+      case '9':
+      $("#cmbCarreras").val("9");
+      break;
+       
+    }
+  });
+
+
+    $("#cmbSemestres").change(function(){
+      changeGpo () ;
+    }) ; 
+
+
+    //$m,$n,$ap,$am,$e,$t,$s,$g,$c
+    $("#btnGuardar").click(function (e){
+      e.preventDefault();
+
+
+      if(vacio()==false && validate()==true){
+           $.post("resources/php/ControlAlumno.php",{op:"buscar",m:$("#txtMatricula").val()},function (data) {
+            if (isObjEmpty(data)==true) {
+                 
+                 if(update==0){
+                 $("#mensaje").load("resources/php/ControlAlumno.php",{op:"guardar",m:$("#txtMatricula").val(),n:$("#txtNombre").val(),ap:$("#txtApPaterno").val(),am:$("#txtApMaterno").val(),e:$("#txtEmail").val(),t:$("#txtTelefono").val(),s:$("#cmbSemestres option:selected").text(),g:$("#cmbGrupos option:selected").text(),c:$("#cmbCarreras option:selected").text()},
+                  function () {
+                     mensaje("Alumno Registrado con exito");
+                      cleanTxt ();
+                      update=0;
+                  });
+               }
+
+                } else{
+                  if (update==1) {
+                    mensaje("Alumno actualizado con exito");
+                    update=0;
+                  }else{
+                    mensaje("Alumno ya Registrado");
+                    update=0;
+                  }
+
+                  
+                }  
+        }
+        ,'json');
+
+           if(update==1){
+                  $("#txtMatricula").prop('disabled',false);
+                $("#mensaje").load("resources/php/ControlAlumno.php",{op:"actualizar",m:$("#txtMatricula").val(),n:$("#txtNombre").val(),ap:$("#txtApPaterno").val(),am:$("#txtApMaterno").val(),e:$("#txtEmail").val(),t:$("#txtTelefono").val(),s:$("#cmbSemestres option:selected").text(),g:$("#cmbGrupos option:selected").text(),c:$("#cmbCarreras option:selected").text()},
+                    function () {
+                       mensaje("Alumno actualizado con exito");
+                       $("#btnEliminar").prop('disabled',true);
+             $("#txtMatricula").prop('disabled',false); 
+                        cleanTxt ();
+                        update=0;
+                    });
+               } 
+    
+    }else{
+
+      mensaje("no puede dejar cajas de texto vacias");
+      $("#mensaje").css("color","red");
+     
+    }
+    });
+
+
+    $("#btnEliminar").click(function  (e) {
+        $("#txtMatricula").prop('disabled',false);
+        e.preventDefault();
+        if($("#txtMatricula").val()!=""){
+
+        $("#mensaje").load("resources/php/ControlAlumno.php",{op:"eliminar",m:$("#txtMatricula").val()},function  () {
+          mensaje("Alumno eliminado con exito");
+          cleanTxt();
+            $("#btnEliminar").prop('disabled',true);
+             $("#txtMatricula").prop('disabled',false);   
+             update=0;
+        });
+      }else{
+        mensaje("no puede dejar cajas de texto vacias");
+        $("#mensaje").css("color","red");
+      }
+    });
+
+    $("#btnBuscar").click(function  (e) {
+      e.preventDefault();
+    if ($("#txtMatricula").val!="") {
+      $.post("resources/php/ControlAlumno.php",{op:"buscar",m:$("#txtMatricula").val()},function (data) 
+        {
+            if (isObjEmpty(data)==false) {
+                   $("#txtMatricula").val(data.Matricula);  
+                   $("#txtNombre").val(data.Nombre);
+                   $("#txtApPaterno").val(data.ApellidoPaterno);
+                   $("#txtApMaterno").val(data.ApellidoMaterno);
+                   $("#txtTelefono").val(data.Telefono);
+                   $("#txtEmail").val(data.Email);        
+                    getIdCarrera(data.Grupo);
+                    $("#cmbSemestres").val(data.Semestre);
+                     $("#cmbSemestres").trigger("change");
+                    $("#cmbGrupos").val(data.Grupo);
+                 
+                 update=1;
+                  $("#btnEliminar").prop('disabled',false);
+                  $("#btnLimpiar").prop('disabled',false);
+                 $("#txtMatricula").prop('disabled',true);
+                } else{
+                  mensaje2("alumno no encontrado");
+                  $("#mensaje2").css("color","red");
+                  update=0;    
+                }  
+        }
+        ,'json');
+    }else
+    { 
+    update=0;
+    mensaje("no puede dejar cajas de texto vacias");
+      $("#mensaje").css("color","red");
+    }
+      
+    });
+
+    $("#btnLimpiar").click(function  (e)   {
+      e.preventDefault();
+      cleanTxt();
+       update=0; 
+      $("#btnEliminar").prop('disabled',true);
+      $("#txtMatricula").prop('disabled',false);
+      $("#btnLimpiar").prop('disabled',true);
+    });
+
+
+       $('ul.nav li.dropdown').hover(function() {
+        $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
+      }, function() {
+        $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
+      });
+
+
+
+
+  //auto inicializacion DoClik 
+    $("#cmbGrupos").trigger("change");
+  
+
+      });
+ </script>
+
+    </head>
+    <body>
+  
+    <header class="site-header" id="top">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="row">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                          <i class="fa fa-bars"></i>
+                        </button>
+                        <div class="logo-wrapper">
+                            <a class="navbar-brand" href="index.html">
+                                SGC<em>Unistmo</em>
+                                <span class="logo-s"></span>
+                            </a>
+                        </div>  
+                    </div>
+                    <div class="collapse navbar-collapse" id="main-menu">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="index.html">Cerrar Sesion</a>
+
+                            </li>
+                            <li><a href="VistaConfiguracion.html">Configuración</a></li>
+                            <li class="dropdown"><a href="VistaAdministrador.html"  class="dropdown-toggle" data-toggle="dropdown">Menu <b class="caret"></b> </a>
+                              <ul class="dropdown-menu">
+                                 <li><a href="VistaAdministrador.html" >Vista Principal</a></li>
+                                <li class="divider"></li>
+                                <li><a href="VistaAdministradorAlumno.html">Alumno</a></li>
+                                <li class="divider"></li>
+                                <li><a href="VistaAdministradorProfesor.html">Profesor</a></li>
+                                <li class="divider"></li>
+                                <li><a href="VistaAdministradorProfesorMateria.html">Asignar materias</a></li>
+                                <li class="divider"></li>
+                                <li><a href="VistaSubirArchivos.html">Subir archivos</a></li>
+                              </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div> 
+            </div>
+        </nav>
+    </header>
+
+    
+
+
+
+    <div class="main-content">
+       
+      <div class="container" >
+       <div class="col-md-12 col-sm-12 col-xs-12">
+                
+                <h3 id="sesion" style="text-align: right; margin-right: 0px; "></h3>
+              
+          </div> 
+           <br>
+          <div class="container" style="margin-top: 50px;">
+              <div class="panel-group">
+                <div class="panel panel-primary">
+                  <div class="panel-heading"><center><h3>Registro de alumnos</h3></center></div>
+                  <div class="panel-body">
+                   
+
+                      <div class="col-md-12 col-sm-12 col-xs-12" >
+                         <div class="col-md-4 col-xs-12 col-sm-4"></div>
+                        <div class="col-md-4 col-xs-12 col-sm-4" >
+                              <center>
+                            <div  id="claseboton" class="boton"><p id="mensaje2"></p></div>
+
+                          <form class="form-horizontal" style="text-align:center;" align="center">
+                               <div class="form-group">
+                                    <label class="control-label col-xs-3" style="text-align: left;">Matricula:</label>
+                                   
+                                      <div class="col-lg-9 col-sm-9 col-xs-12 col-md-9">
+                                        <div class="input-group">
+                                          <input type="text" placeholder="Matricula" id="txtMatricula" title="Ejemplo 0212080028"class="form-control" pattern="[0-9]{10}" required>
+                                          <span class="input-group-btn">
+                                            <button class="btn btn-primary" type="button" id="btnBuscar">
+                                                 <span class="glyphicon glyphicon-search"></span> </button>
+                                          </span>
+                                        </div>
+                                      </div>
+                
+                                </div>
+                              <div class="form-group">
+                                  <label class="control-label col-xs-3">Nombre:</label>
+                                  <div class="col-xs-9">
+                                      <input type="text" class="form-control" id="txtNombre" title="porfavor introdusca datos correctos" placeholder="Nombre" pattern="([A-Za-z ñáéíóú\s]{2,60})" required>
+                                  </div>
+                              </div>
+                              <div class="form-group">
+                                  <label class="control-label col-xs-3">Apellido Paterno:</label>
+                                  <div class="col-xs-9">
+                                      <input type="text" class="form-control" id="txtApPaterno" title="porfavor introdusca datos correctos" placeholder="Apellido paterno" pattern="([A-Za-z ñáéíóú]*)" required>
+                                  </div>
+                              </div>
+                               <div class="form-group">
+                                  <label class="control-label col-xs-3">Apellido Materno:</label>
+                                  <div class="col-xs-9">
+                                      <input type="text" class="form-control" id="txtApMaterno" title="porfavor introdusca datos correctos" placeholder="Apellido materno" pattern="([A-Za-z ñáéíóú]*)" required>
+                                  </div>
+                              </div>
+
+                              <div class="form-group">
+                                  <label class="control-label col-xs-3">Semestre:</label>
+                                  <div class="col-xs-9">
+                                      
+                                  <select class = "form-control input-sm" id="cmbSemestres">
+                                   <option value = "1">Primero</option>
+                                   <option value = "2">Segundo</option>
+                                   <option value = "3">Tercero</option>
+                                   <option value = "4">Cuarto</option>
+                                   <option value = "5">Quinto</option>
+                                   <option value = "6">Sexto</option>
+                                   <option value = "7">Septimo</option>
+                                   <option value = "8">Octavo</option>
+                                   <option value = "9">Noveno</option>
+                                   <option value = "10">Decimo</option>
+
+                                </select>
+                                  </div>
+                              </div>
+                              <div class="form-group">
+                                  <label class="control-label col-xs-3">Grupo:</label>
+                                  <div class="col-xs-9">
+                                    <select class = "form-control input-sm" id="cmbGrupos">
+                                       <option value = "">105</option>
+                                       <option value = "">106</option>
+                                       <option value = "">108</option>
+                                       <option value = "">109</option>
+                                    </select>
+                                  </div>
+                              </div>
+                                <div class="form-group">
+                                  <label class="control-label col-xs-3">Carrera:</label>
+                                  <div class="col-xs-9">
+                                      <select class = "form-control input-sm" id="cmbCarreras" >
+                                         <option value = "8">Informatica</option>
+                                         <option value = "6">Ciencias Empresariales</option>
+                                         <option value = "5">Administración Publica</option>
+                                         <option value = "9">Derecho</option>
+                                      </select>
+                                  </div>
+                              </div>
+                              <div class="form-group">
+                                <label class="control-label col-xs-3">Email:</label>
+                                  <div class="col-xs-9">
+                                    <input type="email" class="form-control" id="txtEmail" title="porfavor introdusca un email correcto" placeholder="Email" required>
+                                  </div>
+                              </div>
+                              
+                              <div class="form-group">
+                                  <label class="control-label col-xs-3" >Telefono:</label>
+                                  <div class="col-xs-9">
+                                      <input type="tel" class="form-control" id="txtTelefono" title="porfavor introdusca un telefono correcto" placeholder="Telefono" pattern="(1\s*[-\/\.]?)?(\((\d{3})\)|(\d{3}))\s*[-\/\.]?\s*(\d{3})\s*[-\/\.]?\s*(\d{4})\s*(([xX]|[eE][xX][tT])\.?\s*(\d+))*" required>
+                                  </div>
+                              </div>
+                            
+                              <br>
+
+                              <div class="form-group">
+                                  <div  id="claseboton" class="boton" style="margin-top: 0px;"><p id="mensaje" class="men"></p></div>
+                                  <div class="col-xs-offset-1 col-xs-12">
+                                      <button type="button" id="btnGuardar" class="btn btn-primary  btn-sm">
+                                          <span class="glyphicon glyphicon-floppy-disk"></span>  Guardar</button>
+                                      <button type="button" id="btnEliminar" class="btn btn-primary btn-sm">
+                                          <span class="glyphicon glyphicon-trash"></span>   Eliminar</button>
+                                      <button type="button" id="btnLimpiar" class="btn btn-primary btn-sm">
+                                          <span class="glyphicon glyphicon-remove"></span>   Cancelar</button>
+                                  </div>
+                              </div>
+
+
+                          </form>
+                         </center>    
+                         
+                        </div>
+
+                       <div class="col-md-4 col-xs-12 col-sm-4"></div> 
+                      </div>
+
+                     
+                  </div>
+                  
+
+                </div>
+
+              </div>
+            </div>
+    
+      
+      </div><!-- container END -->
+      
+    </div><!-- main content END -->
+
+      <footer id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-sm-12 ">
+                    <p class="copyright">Copyright &copy; 2015 <a href="#">Universidad del Istmo</a></p>
+                </div>
+                <div class="col-md-6 col-sm-6 col-sm-12">
+                    <ul class="social">
+                        <li><a href="#" class="fa fa-facebook"></a></li>
+                        <li><a href="#" class="fa fa-twitter"></a></li>
+                      
+                    </ul>
+                </div>
+              </div>
+            </div>
+      </footer> 
+        <script src="resources/js/jquery-2.1.4.js"></script>
+        <script>window.jQuery || document.write('<script src="resources/js/jquery-2.1.4.js"><\/script>')</script>
+        <script src="resources/plantilla/js/vendor/bootstrap.js"></script>
+        <script src="resources/plantilla/js/main.js"></script>
+    </body>
+</html>

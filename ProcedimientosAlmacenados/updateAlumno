@@ -1,0 +1,14 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateAlumno`(
+in idAl VARCHAR(10) ,
+in nomb VARCHAR(45) ,
+in apellidoPa VARCHAR(45) ,
+in apellidoMa VARCHAR(45) ,
+in tel VARCHAR(45) ,
+in email VARCHAR(45),
+in lic VARCHAR(45) ,
+in sem VARCHAR(45) ,
+in grupo VARCHAR(45) ,
+in estado VARCHAR(45))
+BEGIN
+		update alumnos set nombre=nomb,apellidoPaterno=apellidoPa, apellidoMaterno=apellidoMa, telefono=tel,email=email,licenciatura=lic,semestre=sem,grupo=grupo,estado=estado where idAlumno=idAl;
+END

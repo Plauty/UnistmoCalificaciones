@@ -1,0 +1,5 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateMaestro`(in id varchar(10), in nom varchar(45),in ap_Pat varchar(45), in ap_Mat varchar(45), in tel varchar(45), in email varchar(45), in titulo varchar(45), in admin varchar(2), in lic varchar(45))
+BEGIN
+	update maestro set  nombre=nom, apellidoPaterno=ap_Pat, apellidoMaterno=ap_Mat,telefono=tel, email=email, titulo=titulo, licenciatura=lic  where idmaestro=id;
+    update cuentas set administrador=admin where idMaestro=id;
+END

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+ <?php 
+            session_start();
+  ?>
+<html class="no-js">
+    <head>
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="utf-8">
+        <meta name ="author" content ="Plautila Vasquez Martinez, Cosijopii Garcia Garcia">
+        <link rel="stylesheet" href="resources/css/EstiloAlumnoCalificaciones.css">
+        <title>Calificaciones</title>
+        <link rel="stylesheet" href="resources/plantilla/css/bootstrap.min.css">
+        <link rel="stylesheet" href="resources/plantilla/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="resources/plantilla/css/templatemo-style.css">
+        <link rel="stylesheet" href="resources/plantilla/css/font-awesome.min.css">
+         <link rel="stylesheet" href="resources/css/jquery.dataTables.css">
+          <link rel="stylesheet" type="text/css" href="resources/css/editor.dataTables.css">
+          <link rel="stylesheet" type="text/css" href="resources/css/responsive.dataTables.min.css">
+
+        <!-- Favicon and touch icons -->
+        <link rel="shortcut icon" href="resources/ico/Sgc16x16.png">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="resources/ico/Sgc144x144.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="resources/ico/Sgc114x114png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="resources/ico/Sgc72x72.png">
+        <link rel="apple-touch-icon-precomposed" href="resources/ico/Sgc57x57.png">
+
+         <link rel="stylesheet" type="text/css" href="resources/js/jquery-ui-1.11.4/jquery-ui-1.11.4/jquery-ui.css">
+          <link rel="stylesheet" type="text/css" href="resources/css/modal.css">
+
+          <script src="resources/plantilla/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+        
+          <script src="resources/js/jquery-2.1.4.js"></script>
+
+          <script type="text/javascript" charset="utf8"src="resources/js/jquery.dataTables.js"></script>
+          <script type="text/javascript" charset="utf8" src="resources/js/dataTables.responsive.min.js"></script>
+          <script type="text/javascript" src="resources/js/jquery-ui-1.11.4/jquery-ui-1.11.4/jquery-ui.js"></script>
+
+ <script >
+ 
+  $(document).ready(function () {
+
+
+         var t= $("#tablaCalificaciones").DataTable({
+             language:{
+                        "sProcessing":     "Procesando...",
+                        "sLengthMenu":     "Mostrar _MENU_ registros",
+                        "sZeroRecords":    "No se encontraron resultados",
+                        "sEmptyTable":     "Ningún dato disponible en esta tabla",
+                        "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                        "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+                        "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+                        "sInfoPostFix":    "",
+                        "sSearch":         "Buscar:",
+                        "sUrl":            "",
+                        "sInfoThousands":  ",",
+                        "sLoadingRecords": "Cargando...",
+                        "oPaginate": {
+                            "sFirst":    "Primero",
+                            "sLast":     "Último",
+                            "sNext":     "Siguiente",
+                            "sPrevious": "Anterior"
+                        },
+                        "oAria": {
+                            "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                        }
+                    },
+           responsive: true,
+            searching: false,
+            "autoWidth": false
+
+
+            });
+
+ 
+        var id="";
+         $.post("resources/php/session.php",{op:"op4",type:"alumno"},function(data){
+            
+            $("#sesion").html("Bienvenido "+data.nombre);   
+              
+                id=data.idAlumno;
+                 $.post("resources/php/controlConsultaCalificaciones.php",{idAlumno:id, operacion:"LlenarTabla"},function (d) {
+                     t.clear();
+                    for (var i = 0; i < d.length; i++) {     
+                    t.row.add([d[i].nombreMateria,d[i].parcial_1,d[i].parcial_2,d[i].parcial_3,d[i].ordinario,d[i].extra_1,d[i].extra_2,d[i].especial,d[i].prom]).draw();
+                     }
+
+            },'json');
+
+        },'json');
+
+           $("#btnImprimir").click(function(e){
+            e.preventDefault();
+
+              $.post("resources/php/controlConsultaCalificaciones.php",{idAlumno:id, operacion:"dato"},function (p) {
+
+                if(p=="ok"){
+                    window.location.href="resources/php/datos.php";
+                }
+                
+              });
+
+          });
+
+
+
+        $('ul.nav li.dropdown').hover(function() {
+        $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
+        }, function() {
+        $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
+        });
+         
+         
+     });
+
+ </script>
+
+    </head>
+    <body>
+  
+    <header class="site-header" id="top">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="row">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                          <i class="fa fa-bars"></i>
+                        </button>
+                        <div class="logo-wrapper">
+                            <a class="navbar-brand" href="index.html">
+                                SGC<em>Unistmo</em>
+                                <span class="logo-s"></span>
+                            </a>
+                        </div>  
+                    </div>
+                    <div class="collapse navbar-collapse" id="main-menu">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="index.html">Cerrar Sesion</a>
+
+                            </li>
+                            <li><a href="VistaConfiguracionAlumno.html">Configuración</a></li>
+
+                             <li class="dropdown"><a href="VistaAlumno.html"  class="dropdown-toggle" data-toggle="dropdown">Menu <b class="caret"></b> </a>
+                              <ul class="dropdown-menu">
+                                <li><a href="VistaAlumno.html" >Vista Principal</a></li>
+                                <li class="divider"></li>
+                                <li><a href="VistaAlumnoCalificaciones.html">Calificaciones</a></li>
+                                <li class="divider"></li>
+                                <li><a href="VistaAlumnoConsulta.html">Consultas</a></li>
+                                
+                              </ul>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div> 
+            </div>
+        </nav>
+    </header>
+
+    
+
+    <div class="main-content">
+
+      <div class="container" >
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                
+                <h3 id="sesion" style="text-align: right; margin-right: 0px; "></h3>
+              
+          </div>  
+
+          <div class="container" style="margin-top: 70px;">
+              <div class="panel-group">
+                <div class="panel panel-primary">
+                  <div class="panel-heading"><center><h3>Calificaciones</h3></center></div>
+                  <div class="panel-body">
+                          
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                              <div class="col-md-12 col-xs-12 col-sm-12" >
+                                <div  class="table-responsive">            
+                                   <table  id="tablaCalificaciones"  class="table table-hover table-condensed" width="100%" >
+                                    <thead>
+                                      <tr>
+
+                                   
+                                        <th style="text-align: center;"><strong>Materia</strong> </th>
+                                        <th style="text-align: center;"><strong>1 Parcial</strong></th>
+                                        <th style="text-align: center;"><strong>2 Parcial</strong></th>
+                                        <th style="text-align: center;"><strong>3 Parcial</strong></th>
+                                        <th style="text-align: center;"><strong>Ordinario</strong></th>
+                                        <th style="text-align: center;"><strong>Extra 1</strong></th>
+                                        <th style="text-align: center;"><strong>Extra 2</strong></th>
+                                        <th style="text-align: center;"><strong>Especial</strong></th>
+                                        <th style="text-align: center;"><strong>Promedio</strong></th>
+                                         
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                   
+
+                                    </tbody>
+                                  </table> 
+
+                               </div>
+                                    <div class="form-group" >
+                                        <div class="col-xs-offset-5 col-xs-6">
+              
+                                          <button type="button" id="btnImprimir" class="btn btn-success">
+                                          <span class=" glyphicon glyphicon-print"></span> Imprimir</button>
+                                          
+                                        </div>
+                                      </div>
+                              
+                             </div>
+                            </div>
+
+
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+
+     
+      </div><!-- container END -->
+      
+    </div><!-- main content END -->
+
+      <footer id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-sm-12 ">
+                    <p class="copyright">Copyright &copy; 2015 <a href="#">Universidad del Istmo</a></p>
+                </div>
+                <div class="col-md-6 col-sm-6 col-sm-12">
+                    <ul class="social">
+                        <li><a href="#" class="fa fa-facebook"></a></li>
+                        <li><a href="#" class="fa fa-twitter"></a></li>
+                       
+                    </ul>
+                </div>
+              </div>
+            </div>
+      </footer> 
+        
+        <script src="resources/plantilla/js/vendor/bootstrap.js"></script>
+        <script src="resources/plantilla/js/main.js"></script>
+    </body>
+</html>

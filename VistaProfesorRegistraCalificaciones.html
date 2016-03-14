@@ -1,0 +1,447 @@
+  <!DOCTYPE html>
+  <?php 
+              session_start();
+    ?>
+  <html class="no-js">
+      <head>
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <meta charset="utf-8">
+          <meta name ="author" content ="Plautila Vasquez Martinez, Cosijopii Garcia Garcia">
+          <link rel="stylesheet" href="resources/css/EstiloProfesorRegistraCalif.css">
+          <title>Registro de Calificaciones</title>
+          <link rel="stylesheet" href="resources/plantilla/css/bootstrap.min.css">
+          <link rel="stylesheet" href="resources/plantilla/css/bootstrap-theme.min.css">
+          <link rel="stylesheet" href="resources/plantilla/css/templatemo-style.css">
+          <link rel="stylesheet" href="resources/plantilla/css/font-awesome.min.css">
+          <link rel="stylesheet" href="resources/css/jquery.dataTables.css">
+          <link rel="stylesheet" type="text/css" href="resources/css/editor.dataTables.css">
+          <link rel="stylesheet" type="text/css" href="resources/css/responsive.dataTables.min.css">
+          <!-- Favicon and touch icons -->
+          <link rel="shortcut icon" href="resources/ico/Sgc16x16.png">
+          <link rel="apple-touch-icon-precomposed" sizes="144x144" href="resources/ico/Sgc144x144.png">
+          <link rel="apple-touch-icon-precomposed" sizes="114x114" href="resources/ico/Sgc114x114png">
+          <link rel="apple-touch-icon-precomposed" sizes="72x72" href="resources/ico/Sgc72x72.png">
+          <link rel="apple-touch-icon-precomposed" href="resources/ico/Sgc57x57.png">
+          <link rel="stylesheet" type="text/css" href="resources/js/jquery-ui-1.11.4/jquery-ui-1.11.4/jquery-ui.css">
+          <link rel="stylesheet" type="text/css" href="resources/css/modal.css">
+
+          <script src="resources/plantilla/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+        
+          <script src="resources/js/jquery-2.1.4.js"></script>
+
+          <script type="text/javascript" charset="utf8"src="resources/js/jquery.dataTables.js"></script>
+          <script type="text/javascript" charset="utf8" src="resources/js/dataTables.responsive.min.js"></script>
+          <script type="text/javascript" src="resources/js/jquery-ui-1.11.4/jquery-ui-1.11.4/jquery-ui.js"></script>
+        
+     <script >
+     var g;
+      $(document).ready(function () {
+             
+       
+
+            var id;
+            var u;  
+            var lista;
+            $.post("resources/php/session.php",{op:"op4",type:"maestro"},function ( data ){
+               id=data.idMaestro;
+               u=data.nombre;   
+                 $("#sesion").html("Bienvenido "+u);    
+                      $.post("resources/php/ControlProfesorCalificaciones.php",{op:"materias",id:id},function (data2) {
+                        lista=data2;
+                         $("#cmbMaterias").empty();
+                          for (var i in data2) {          
+                             $("#cmbMaterias").append("<option"+" value='"+data2[i].idMateria+"' > "+(data2[i].nombreMat)+"</option>");
+                          }
+                        
+                    },'json');
+            
+            },'json');
+
+
+       
+         
+        
+        var  t= $("#tablaCalificaciones").DataTable({
+             language:{
+                        "sProcessing":     "Procesando...",
+                        "sLengthMenu":     "Mostrar _MENU_ registros",
+                        "sZeroRecords":    "No se encontraron resultados",
+                        "sEmptyTable":     "Ningún dato disponible en esta tabla",
+                        "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                        "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+                        "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+                        "sInfoPostFix":    "",
+                        "sSearch":         "Buscar:",
+                        "sUrl":            "",
+                        "sInfoThousands":  ",",
+                        "sLoadingRecords": "Cargando...",
+                        "oPaginate": {
+                            "sFirst":    "Primero",
+                            "sLast":     "Último",
+                            "sNext":     "Siguiente",
+                            "sPrevious": "Anterior"
+                        },
+                        "oAria": {
+                            "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                        }
+                    },
+           responsive: true
+
+
+            });
+     
+            
+
+
+             $("#btnBuscar").click(function (e) {
+                  e.preventDefault();
+              
+                g=$("#cmbMaterias").val();
+              
+               t.clear();
+
+              
+                
+               
+              
+                 $.post("resources/php/ControlProfesorCalificaciones.php",{op:"calificaciones",idM:g},function  (data3) {
+                 
+
+                  
+                  for (var i = 0; i < data3.length; i++) {
+                 
+                   var mat="ClickEditar("+"'"+data3[i].Matricula+"','"+data3[i].idCalificaciones+"'"+");";
+
+                    t.row.add([data3[i].Matricula,data3[i].Estudiante,data3[i].parcial_1,data3[i].parcial_2,data3[i].parcial_3,
+                      data3[i].Ordinario,data3[i].Extra_1,data3[i].Extra_2,data3[i].especial,data3[i].promedio,"<button class='btn btn-primary btn-sm btnTablaeditar'  Onclick="+mat+" >editar</button>"]).draw();
+
+                  }
+                 },'json');
+            
+               
+            });
+           
+
+          /*
+          
+          primero buscar el codigo de profesor luego buscae las materias
+          llenar combo de materias 
+          desues tener el codigo de las materias en un arreglo de javascrip
+          buscar todas los alumnos que tengan esa materia de tal semestre
+          y poner a sus aumnos y hacer la relacion alumno materia calificacionñ
+          presupuesto de costos
+        sisema de control de calidad
+        plan de comunicacion
+        bitacorra 
+        proyecto
+          */
+
+        $('ul.nav li.dropdown').hover(function() {
+        $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
+        }, function() {
+        $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
+        });
+
+
+          });
+
+         var mozillaPresente = false,
+                mozilla = (function detectarNavegador(navegador) {
+                if(navegador.indexOf("Firefox") != -1 ) {
+                    mozillaPresente = true;
+                }   
+            })(navigator.userAgent);
+            function darEfecto(efecto) {
+                el = $('.cajainterna');
+                el.addClass(efecto);
+                el.one('webkitAnimationEnd oanimationend msAnimationEnd animationend',
+                function (e) {
+                    el.removeClass(efecto);
+                });
+            }
+            function mostrar(e) {
+                $(".cajaexterna").show();
+                darEfecto("bounceIn");      
+            }
+            function ocultar() {
+                $(".cajaexterna").fadeOut("fast", function() {
+                    if(mozillaPresente) {
+                    setTimeout(function() {
+                        $(".cajainterna").removeClass("bounceIn");
+                    }, 5);
+                }
+                });         
+            }
+            var idcal="";
+            function ClickEditar(Matricula,idc) { 
+                     mostrar();
+                   
+                    idcal=idc;
+                   
+                     $.post("resources/php/ControlProfesorCalificaciones.php",{op:"alumno",idM:Matricula},function  (data3) {  
+                          $("#alumno").html(data3.Nombre+" "+data3.ApellidoPaterno+" "+data3.ApellidoMaterno); 
+                       $.post("resources/php/ControlProfesorCalificaciones.php",{op:"calificaciones",idM:g},function  (data3) {
+                      for (var i = 0; i < data3.length; i++) {
+                      
+                      if(data3[i].Matricula==Matricula){
+                        $("#txtp1").val(data3[i].parcial_1);
+                        $("#txtp2").val(data3[i].parcial_2);
+                        $("#txtp3").val(data3[i].parcial_3);
+                        $("#txtord").val(data3[i].Ordinario);
+                       
+                        if(data3[i].Extra_1=="0" && data3[i].Extra_2=="0" && data3[i].especial=="0"){
+                          $("#txtex1").val("");
+                          $("#txtex2").val("");
+                          $("#txtesp").val("");
+                        }else{
+                        $("#txtex1").val(data3[i].Extra_1);
+                        $("#txtex2").val(data3[i].Extra_2);
+                        $("#txtesp").val(data3[i].especial);
+                        }
+                              if(data3[i].Extra_1=="0" ){
+                                      $("#txtex1").val("");
+                        }
+                        if(data3[i].Extra_2=="0" ){
+                                      $("#txtex2").val("");
+                        }                       
+                          if(data3[i].especial=="0" ){
+                                      $("#txtesp").val("");
+                        }
+
+                      }
+                     //data3[i].Matricula,data3[i].Estudiante,data3[i].parcial_1,data3[i].parcial_2,data3[i].parcial_3,
+                       //   data3[i].Ordinario,data3[i].Extra_1,data3[i].Extra_2,data3[i].especial,data3[i].promedio]
+
+                      }
+                     },'json');
+                       
+
+                      },'json');
+              
+             
+              }
+           function cerrarModal(){
+              ocultar();
+            } 
+      
+
+          function Guardar(){
+               ocultar();
+             var erro=false;
+             var i=0;
+             var regexp = /^\d+(?:\.\d{1,2})?$/;  
+             var dataCal=[];
+               $("input.txtCal").each(function(){
+                        var dato=$(this).val();
+                        if(regexp.test(dato) || dato==""){
+                          dataCal[i++]=dato;
+                        }else{
+                          erro=true;
+                        }
+                    });
+              if(!erro){
+                dataCal[7]=idcal;
+                $.post("resources/php/ControlProfesorCalificaciones.php",{op:"sendCal",datos:JSON.stringify(dataCal)},function() {
+                    $("#btnBuscar").trigger("click");
+               
+                });
+               
+              } 
+               $("#btnBuscar").trigger("click");
+               
+          }     
+          /*
+          si extra es igual a cero enteonces no sse puede usar cero para poder utilizarlo de constaten en la validadciones del sgc
+          si data.lenght es igual a 1 ceros de [0-3] poniendo ceros en donde falta de ese rango y setear la posicion 7 con su operacion
+          sii fila 4 tiene un valor entonces [7]=[4] si 8 tiene un vaolor[5]=[7] y si 6 tiene valor  entonces [6]=[7]  
+        */      
+        /*
+        al resivir los datos hacer un trigger del evento click sobre el vbtono buscar y recargar la tabla
+        */
+     </script>
+
+      </head>
+      <body>
+            <div class="cajaexterna">
+          <div class="cajainterna animated panel panel-primary">
+            <div class="cajacentrada">
+                <h2>Registrar calificaciones  <a style="margin-right:0px;margin-left:83%;color:#fff;" href="#" Onclick="cerrarModal();">X</a></h2> 
+              <p>
+
+              <div  class="table-responsive">
+              <h1>Registro de calificaciones del alumno <h1 id="alumno"></h1> </h1>            
+              <table   class="table" >
+                   <thead> 
+
+                     <th style="text-align: center;"><strong>1 Parcial</strong></th>
+                     <th style="text-align: center;"><strong>2 Parcial</strong></th>
+                     <th style="text-align: center;"><strong>3 Parcial</strong></th>
+                     <th style="text-align: center;"><strong>Ordinario</strong></th>
+                     <th style="text-align: center;"><strong>Extra 1</strong></th>
+                     <th style="text-align: center;"><strong>Extra 2</strong></th>
+                     <th style="text-align: center;"><strong>Especial</strong></th>
+                          
+                      </tr>
+                      </thead>
+                      <tbody>
+                       <tr>
+                         <td><input class="txtCal" id="txtp1"  type="number" min="0" max="10" step=".1" value ="" ></input></td>
+                        <td><input class="txtCal" id="txtp2"  type="number" min="0" max="10" step=".1" value ="" ></input></td>
+                       <td><input class="txtCal" id="txtp3"  type="number" min="0" max="10" step=".1" value ="" ></input></td>                                                                                                        
+                       <td> <input class="txtCal" id="txtord"  type="number" min="0" max="10" step=".1" value ="" ></input></td>
+                       <td><input class="txtCal" id="txtex1"  type="number" min="0" max="10" step=".1" value ="" ></input></td>
+                        <td><input class="txtCal" id="txtex2"  type="number" min="0" max="10" step=".1" value ="" ></input></td>
+                         <td><input class="txtCal" id="txtesp"  type="number" min="0" max="10" step=".1" value ="" ></input></td>
+                            
+                       </tr>
+                       </tbody>
+                 </table> 
+                
+                </div>
+              </p>
+              <div class="cierramodal">
+
+                <button class ="btn  btn-primary" Onclick="Guardar();" >Guardar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      <header class="site-header" id="top">
+          <nav class="navbar navbar-default navbar-fixed-top">
+              <div class="container">
+                  <div class="row">
+                      <div class="navbar-header">
+                          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                            <i class="fa fa-bars"></i>
+                          </button>
+                          <div class="logo-wrapper">
+                              <a class="navbar-brand" href="index.html">
+                                  SGC<em>Unistmo</em>
+                                  <span class="logo-s"></span>
+                              </a>
+                          </div>  
+                      </div>
+                      <div class="collapse navbar-collapse" id="main-menu">
+                          <ul class="nav navbar-nav navbar-right">
+                              <li><a href="index.html">Cerrar Sesion</a>
+                              </li>
+                              <li><a href="VistaConfiguracionMaestro.html">Configuración</a></li>
+
+                               <li class="dropdown"><a href="VistaProfesor.html"  class="dropdown-toggle" data-toggle="dropdown">Menu <b class="caret"></b> </a>
+                              <ul class="dropdown-menu">
+                                <li><a href="VistaProfesor.html" >Vista Principal</a></li>
+                                <li class="divider"></li>
+                                <li><a href="VistaProfesorRegistraCalificaciones.html">Registrar calificaciones</a></li>
+                                <li class="divider"></li>
+                                <li><a href="VistaProfesorConsulta.html">Consultas</a></li>
+                                
+                              </ul>
+                            </li>
+
+                          </ul>
+                      </div>
+                  </div> 
+              </div>
+          </nav>
+      </header>
+
+      
+
+      <div class="main-content">
+     
+        <div class="container" >
+           <div class="col-md-12 col-sm-12 col-xs-12">
+                
+                <h3 id="sesion" style="text-align: right; margin-right: 0px; "></h3>
+              
+          </div>  
+          
+
+            <div class="container" style="margin-top: 70px;" >
+
+                <div class="panel-group">
+
+                  <div class="panel panel-primary">
+                    <div class="panel-heading"><center><h3>Registro de calificaciones</h3></center></div>
+                    <div class="panel-body">
+                      
+                      <div class="col-md-12 col-sm-12 col-xs-12" style="margin-bottom: 10px;">
+
+                          <div class="col-md-6 col-md-offset-4">
+                              <form class="form-inline" role="form">
+                                          <div class="form-group">
+                                            <label for="Materia">Materia:</label>
+                                            <select  id="cmbMaterias" class = "form-control input-sm" ></select>
+                                           <button type="button" class="btn btn-primary btn-sm" id="btnBuscar">Buscar</button>
+                                          </div>
+                                          
+                                 </form>
+                          </div>    
+                      </div>
+                      <br>
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                              <div class="col-md-12 col-xs-12 col-sm-12" >
+                                <div  class="table-responsive">            
+                                   <table  id="tablaCalificaciones"  class="table table-hover table-condensed" >
+                                    <thead>
+                                      <tr>
+                                        <th style="text-align: center;"><strong>Matricula</strong> </th>
+                                        <th style="text-align: center;"><strong>Estudiante</strong> </th>
+                                        <th style="text-align: center;"><strong>1 Parcial</strong></th>
+                                        <th style="text-align: center;"><strong>2 Parcial</strong></th>
+                                        <th style="text-align: center;"><strong>3 Parcial</strong></th>
+                                        <th style="text-align: center;"><strong>Ordinario</strong></th>
+                                        <th style="text-align: center;"><strong>Extra 1</strong></th>
+                                        <th style="text-align: center;"><strong>Extra 2</strong></th>
+                                        <th style="text-align: center;"><strong>Especial</strong></th>
+                                        <th style="text-align: center;"><strong>Promedio</strong></th>
+                                         <th style="text-align: center;"><strong>editar</strong></th>
+
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                               
+                                    </tbody>
+                                  </table> 
+
+                               </div>
+                                    <div class="form-group" >
+                                        <div class="col-xs-offset-3 col-xs-9">
+                                        </div>
+                                      </div>
+                             </div>
+                            </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+        
+        </div><!-- container END -->
+        
+      </div><!-- main content END -->
+
+        <footer id="footer">
+          <div class="container">
+              <div class="row">
+                  <div class="col-md-6 col-sm-6 col-sm-12 ">
+                      <p class="copyright">Copyright &copy; 2015 <a href="#">Universidad del Istmo</a></p>
+                  </div>
+                  <div class="col-md-6 col-sm-6 col-sm-12">
+                      <ul class="social">
+                          <li><a href="#" class="fa fa-facebook"></a></li>
+                          <li><a href="#" class="fa fa-twitter"></a></li>
+                       
+                      </ul>
+                  </div>
+                </div>
+              </div>
+        </footer> 
+       
+          <script src="resources/plantilla/js/vendor/bootstrap.js"></script>
+          <script src="resources/plantilla/js/main.js"></script>
+      </body>
+  </html>

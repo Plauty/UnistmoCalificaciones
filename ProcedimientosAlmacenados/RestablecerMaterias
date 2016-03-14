@@ -1,0 +1,4 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RestablecerMaterias`(in car varchar(45))
+BEGIN
+		update materias set asignado='false' where carrera=car;
+END

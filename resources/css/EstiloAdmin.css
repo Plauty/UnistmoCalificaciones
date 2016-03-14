@@ -1,0 +1,98 @@
+.tabla{
+    padding: 10px;
+}
+.uno{
+   
+    padding-left: 25px;
+    padding-right:25px;
+}
+
+.color{
+    opacity: 0.8 !important; 
+    color: #fff !important;
+
+}
+h1{
+    color: #000000 !important;
+}
+
+h4{
+    color: #000000 !important;
+}
+
+.Config{text-align: right;
+padding-left: 10px;
+padding-right: 10px;}
+
+.medio{
+   padding-left: 10px;
+padding-right: 10px; 
+}
+
+.Imag{
+    padding-right: 35px;
+    padding-left: 35px;
+    padding-top: 60px;
+    padding-bottom: 63px;
+}
+
+/**
+ * Profile image component
+ */
+.profile-header-container{
+    margin: 2px;
+    text-align: center;
+}
+
+.profile-header-container2{
+    margin: 2px;
+    text-align: center;
+}
+
+.profile-header-img {
+    padding: 35px;
+}
+.profile-header-img2 {
+    padding: 35px;
+}
+
+.profile-header-img > img.img-circle {
+    width: 145px;
+    height: 145px;
+    border: 2px solid #51D2B7;
+}
+
+.profile-header-img2 > img.img-circle {
+    width: 145px;
+    height: 145px;
+    border: 2px solid #51D2B7;
+}
+
+.profile-header {
+    margin-top: 43px;
+}
+
+/**
+ * Ranking component
+ */
+.rank-label-container {
+    margin-top: -19px;
+    /* z-index: 1000; */
+    text-align: center;
+}
+
+.rank-label-container2 {
+    margin-top: -19px;
+    /* z-index: 1000; */
+    text-align: center;
+}
+
+.label.label-default.rank-label {
+    background-color: rgb(81, 210, 183);
+    padding: 8px 18px 8px 18px;
+    border-radius: 27px;
+    font-size: 13px;
+}
+
+
+

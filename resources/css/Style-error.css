@@ -1,0 +1,112 @@
+.tabla{
+    padding: 10px;
+}
+.uno{
+   
+    padding-left: 25px;
+    padding-right:25px;
+}
+
+.Config{text-align: right;
+padding-left: 10px;
+padding-right: 10px;}
+
+.medio{
+   padding-left: 10px;
+padding-right: 10px; 
+}
+
+
+.botones{
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.tam{
+	width: 30px;
+	height: 15px;
+}
+
+.nom2{
+	padding-left: 42px;
+	padding-right: 10px;
+
+}
+.nom{
+	padding-left: 48px;
+	padding-right: 15px;
+
+}
+
+.tablaNom{
+	margin-left: 78px;
+}
+
+.bloque{
+    display: inline-block;
+}
+
+.color{
+    opacity: 0.8 !important; 
+    color: #fff !important;
+
+}
+h1{
+    color: #000000 !important;
+}
+
+h4{
+    color: #000000 !important;
+}
+
+
+.colorPanel{
+    background-color: #E65E9F !important;
+
+}
+
+.boton{
+    font: bold 15px Arial, sans-serif;
+    border-radius: 3px;
+    box-shadow: 0px 4px rgba(0, 0, 0, 0.2);
+   margin-left: 20px;
+   margin-right: 0px;
+   text-align: center;
+    background: #FF6666;
+    color: #000;
+    line-height: 36px;
+    transition: all 2s; 
+}
+
+
+.errores{
+            -webkit-boxshadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            -o-box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            background: red;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            color: #fff;
+            display: none;
+            font-size: 11px;
+            margin-top: -10px;
+            margin-left: 20px;
+            padding: 7px;
+            position: absolute;
+        }
+
+
+.errores2{
+            -webkit-boxshadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            -o-box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            background: red;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            color: #fff;
+            display: none;
+            font-size: 11px;
+            margin-top: 31px;
+            margin-left: 85px;
+            padding: 2px;
+            position: absolute;
+        }

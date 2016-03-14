@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+ <?php 
+            session_start();
+  ?>
+<html class="no-js">
+    <head>
+        <meta charset="utf-8">
+        <meta name ="author" content ="Plautila Vasquez Martinez, Cosijopii Garcia Garcia">
+        <link rel="stylesheet" href="resources/css/EstiloSubirArchivo.css">
+        <title>Subir Archivos</title>
+        <link rel="stylesheet" href="resources/plantilla/css/bootstrap.min.css">
+        <link rel="stylesheet" href="resources/plantilla/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="resources/plantilla/css/templatemo-style.css">
+        <link rel="stylesheet" href="resources/plantilla/css/font-awesome.min.css">
+
+        <!-- Favicon and touch icons -->
+        <link rel="shortcut icon" href="resources/ico/Sgc16x16.png">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="resources/ico/Sgc144x144.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="resources/ico/Sgc114x114png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="resources/ico/Sgc72x72.png">
+        <link rel="apple-touch-icon-precomposed" href="resources/ico/Sgc57x57.png">
+        
+        <script src="resources/plantilla/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+
+
+
+ <script src="resources/js/jquery-2.1.4.js"></script>
+
+ <script >
+ 
+
+ function mensaje (dato) {
+  $("#mensaje").html(dato);
+  $("#mensaje").fadeOut(3000);
+  $("#mensaje").fadeIn(2000);
+  $("#mensaje").hide("slow"); 
+}
+
+function isObjEmpty (obj) {
+  for(var name in obj){
+    return false;
+  }
+  return true;
+}
+
+
+  var p;
+  var u; 
+  var carrera;
+
+  $(document).ready(function () {
+         
+        $.post("resources/php/session.php",{op:"op2"},function( data ){
+           p=data.pas;
+           u=data.user;  
+
+           carrera= data.carrera; 
+            $("#sesion").html("Bienvenido "+data.nombre);  
+            //alert(carrera);
+ 
+
+        },'json');     
+
+
+       function vacio () {
+              if ($("#descripcion").val()=="") {
+              //$("#mensaje").val("error introdusca todos los datos")
+                return true;
+
+              } else{
+                return false;
+
+              }
+            }
+
+
+            /*$('#Enviar').on('submit', (function(e) {
+                  e.preventDefault();
+                   
+                  var formData = new FormData();
+                      formData.append('file', $('input[type=file]')[0].files[0]);
+               
+                  $.ajax({
+                      type:'POST',
+                      url: 'resources/php/ControlSubirArchivo.php'
+                      data: formData,
+                      cache: false,
+                      contentType: false,
+                      processData: false,
+                      carreraRecib: carrera , 
+                      descripcion: $("#descripcion").val(),
+                      operacion:"guardar",
+                      success:function(data) {
+                      },
+                      error: function(data) {
+                      }
+                  });
+              }));*/
+
+
+
+          /*  $("#Enviar").click(function(evento) {
+
+            evento.preventDefault();
+            alert(carrera);
+            var f = $(this);
+            var formData = new FormData(document.getElementById("formArchivo"));
+            formData.append("dato", "valor");
+            //formData.append(f.attr("name"), $(this)[0].files[0]);
+            $.ajax({
+                url: "resources/php/ControlSubirArchivo.php",
+                type: "post",
+                dataType: "html",
+                data: formData,
+                cache: false,
+                contentType: false,
+                 processData: false,
+                  carreraRecib: carrera , 
+                      descripcion: $("#descripcion").val(),
+                      operacion:"guardar"
+                      })
+                          .done(function(res){
+                              $("#mensaje").html("Respuesta: " + res);
+                          });
+                  });
+              });*/
+
+
+          $("#Enviar").click(function(evento) {
+            //alert($("#descripcion").val());
+            //alert('carrera : ' + carrera);
+         
+              if (vacio()==false ) {
+
+              evento.preventDefault();
+              
+             
+             var descrip= $("#descripcion").val();
+              var op="guardar";
+              /*var formData = new FormData();
+              formData.append('file', $('#archivo').prop('files')[0]);
+
+               alert(formData);
+               */
+               var file= $("#archivo").prop('files')[0];
+               var data= new FormData();
+               data.append('archivo',file);
+                  
+                  $.ajax({
+                      type:'POST',
+                      url: 'resources/php/controlArchivo.php?files='+data+'&operacion='+op+'&carreraRecib='+carrera+'&descripcion='+descrip,
+                      data: data,
+                      cache: false,
+                      dataType: 'json',
+
+                      contentType: false,
+                      processData: false,
+                    
+                      success:function(textStatus) {
+                        //alert(textStatus);
+                         if (isObjEmpty(textStatus)==false) {
+                                mensaje(textStatus);
+                                if(textStatus=="Archivo guardado con exito"){
+                                  $("#mensaje").css("color","#000");
+                                }else{
+                                  
+                                    $("#mensaje").css("color","red");
+
+                                }
+                                
+                        
+                         }else{
+                          mensaje(textStatus);
+
+                        
+
+                         }
+                        
+                      },
+                      error: function(textStatus) {
+                        //alert(textStatus);
+                        if (isObjEmpty(textStatus)==false) {
+                                mensaje(textStatus);
+                        $("#mensaje").css("color","red");
+                         }else{
+                          mensaje(textStatus);
+                        $("#mensaje").css("color","red");
+
+                         }
+
+                        
+                      }
+                  });    
+
+              }else{
+                mensaje("no puede dejar cajas de texto vacias");
+                $("#mensaje").css("color","red");
+              }
+          });
+
+   $('ul.nav li.dropdown').hover(function() {
+        $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
+      }, function() {
+        $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
+      });
+
+
+
+        
+      });
+
+
+
+
+ </script>
+
+    </head>
+    <body>
+  
+    <header class="site-header" id="top">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="row">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                          <i class="fa fa-bars"></i>
+                        </button>
+                        <div class="logo-wrapper">
+                            <a class="navbar-brand" href="index.html">
+                                SGC<em>Unistmo</em>
+                                <span class="logo-s"></span>
+                            </a>
+                        </div>  
+                    </div>
+                    <div class="collapse navbar-collapse" id="main-menu">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="index.html">Cerrar Sesion</a>
+
+                            </li>
+                            <li><a href="VistaConfiguracion.html">Configuración</a></li>
+
+                            <li class="dropdown"><a href="VistaAdministrador.html"  class="dropdown-toggle" data-toggle="dropdown">Menu <b class="caret"></b> </a>
+                              <ul class="dropdown-menu">
+                                 <li><a href="VistaAdministrador.html" >Vista Principal</a></li>
+                                <li class="divider"></li>
+                                <li><a href="VistaAdministradorAlumno.html">Alumno</a></li>
+                                <li class="divider"></li>
+                                <li><a href="VistaAdministradorProfesor.html">Profesor</a></li>
+                                <li class="divider"></li>
+                                <li><a href="VistaAdministradorProfesorMateria.html">Asignar materias</a></li>
+                                <li class="divider"></li>
+                                <li><a href="VistaSubirArchivos.html">Subir archivos</a></li>
+                              </ul>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div> 
+            </div>
+        </nav>
+    </header>
+
+
+
+    <div class="main-content">
+     
+                    
+      <div class="container margen">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+                
+                <h3 id="sesion" style="text-align: right; margin-right: 0px; "></h3>
+              
+          </div>  
+
+            <div class="container" style="margin-top: 70px; margin-bottom: 15px;">
+              <div class="panel-group">
+                <div class="panel panel-primary">
+                  <div class="panel-heading"><center><h3>Subir Archivos</h3></center></div>
+                  <div class="panel-body" style="margin-top: 20px; margin-bottom: 0px;">
+
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="col-md-3 col-xs-12 col-sm-3"></div>
+
+                      <div class="col-md-4 col-xs-12 col-sm-4">
+                           
+                       <center>
+                         
+                          <form id="formArchivo" class="form-horizontal" enctype="multipart/form-data" >
+                            <div class="form-group">
+
+                                <label class="control-label col-xs-9 col-sm-8 col-md-9" style="text-align: left; margin-top: 20px;">Seleccione el archivo:</label>
+                                
+                                    <input style="text-align: right; margin-top: 23px; " id="archivo" name="fichero_usuario" type="file" />
+                               
+                            </div>
+                         
+                            <div class="form-group">
+                              <label for="comment" class="col-xs-6" style="text-align: left;">Descripción:</label>
+                              <textarea class="form-control" rows="5" id="descripcion"></textarea>
+                            </div>
+                          
+                          
+                            <br>
+
+                            <div class="form-group" style="margin-bottom: 0px;">
+                                <div class="col-xs-offset-3 col-xs-9">
+                                    <button type="submit" class="btn btn-primary" style="float: right;"          id="Enviar">
+                                        <span class="glyphicon glyphicon-upload"></span> Subir</button>
+                                    
+                                </div>
+                            </div>
+
+
+                        </form>
+                        
+                       </center>
+                            
+                       
+                      </div>
+                    <div class="col-md-4 col-xs-12 col-sm-4"></div>
+
+                     
+                    </div>
+
+
+                  </div>
+
+                   <div class="col-md-12 col-sm-12 col-xs-12" style="margin-top: 0px;">
+                                  <div class="col-md-4 col-xs-12 col-sm-4" style="margin-top: 0px;"></div>
+
+                                  <div class="col-md-4 col-xs-12 col-sm-4" style="margin-top: 0px;">
+                                   
+                                      <div  id="claseboton" class="boton2" style="margin-top: 0px;"><p id="mensaje" class="men"></p></div>
+                                 
+
+                                  </div>
+
+                                   <div class="col-md-4 col-xs-12 col-sm-4" style="margin-top: 0px;"></div>
+
+                          </div>
+
+                </div>
+
+              </div>
+            </div>
+
+
+
+     
+      </div><!-- container END -->
+      
+    </div><!-- main content END -->
+
+      <footer id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-sm-12 ">
+                    <p class="copyright">Copyright &copy; 2015 <a href="#">Universidad del Istmo</a></p>
+                </div>
+                <div class="col-md-6 col-sm-6 col-sm-12">
+                    <ul class="social">
+                        <li><a href="#" class="fa fa-facebook"></a></li>
+                        <li><a href="#" class="fa fa-twitter"></a></li>
+                      
+                    </ul>
+                </div>
+              </div>
+            </div>
+      </footer> 
+        <script src="resources/plantilla/js/vendor/jquery-1.11.0.min.js"></script>
+        <script>window.jQuery || document.write('<script src="resources/plantilla/js/vendor/jquery-1.11.0.min.js"><\/script>')</script>
+        <script src="resources/plantilla/js/vendor/bootstrap.js"></script>
+        <script src="resources/plantilla/js/main.js"></script>
+    </body>
+</html>

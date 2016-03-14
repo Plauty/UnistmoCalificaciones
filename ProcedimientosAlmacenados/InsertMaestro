@@ -1,0 +1,7 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `InsertMaestro`(in id varchar(10), in nom varchar(45),in ap_Pat varchar(45), in ap_Mat varchar(45), in tel varchar(45), in email varchar(45), in titulo varchar(45),in admin varchar(2), in lic varchar(45))
+BEGIN
+	insert into maestro values (id,nom,ap_Pat,ap_Mat,tel,email,titulo,lic);	
+	insert into cuentas (usuario,contraseña,idMaestro,administrador) values (id, id,id,admin); 
+
+
+END

@@ -1,0 +1,9 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `InsertMaestroMateria`(
+in idMaest VARCHAR(10) , 
+in idMat INT(11) ,
+in CiclEsc VARCHAR(45))
+BEGIN
+
+insert into maestro_materia values(idMaest,idMat,CiclEsc);
+
+END

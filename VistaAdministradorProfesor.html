@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+ <?php 
+            session_start();
+  ?>
+<html class="no-js">
+    <head>
+        <meta charset="utf-8">
+        <meta name ="author" content ="Plautila Vasquez Martinez, Cosijopii Garcia Garcia">
+        <link rel="stylesheet" href="resources/css/EstiloAdminProfesores.css">
+        <title>Registro de Profesores</title>
+        <link rel="stylesheet" href="resources/plantilla/css/bootstrap.min.css">
+        <link rel="stylesheet" href="resources/plantilla/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="resources/plantilla/css/templatemo-style.css">
+        <link rel="stylesheet" href="resources/plantilla/css/font-awesome.min.css">
+
+        <!-- Favicon and touch icons -->
+        <link rel="shortcut icon" href="resources/ico/Sgc16x16.png">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="resources/ico/Sgc144x144.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="resources/ico/Sgc114x114png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="resources/ico/Sgc72x72.png">
+        <link rel="apple-touch-icon-precomposed" href="resources/ico/Sgc57x57.png">
+
+ <style type="text/css">
+
+  input:required:invalid, input:focus:invalid {
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAeVJREFUeNqkU01oE1EQ/mazSTdRmqSxLVSJVKU9RYoHD8WfHr16kh5EFA8eSy6hXrwUPBSKZ6E9V1CU4tGf0DZWDEQrGkhprRDbCvlpavan3ezu+LLSUnADLZnHwHvzmJlvvpkhZkY7IqFNaTuAfPhhP/8Uo87SGSaDsP27hgYM/lUpy6lHdqsAtM+BPfvqKp3ufYKwcgmWCug6oKmrrG3PoaqngWjdd/922hOBs5C/jJA6x7AiUt8VYVUAVQXXShfIqCYRMZO8/N1N+B8H1sOUwivpSUSVCJ2MAjtVwBAIdv+AQkHQqbOgc+fBvorjyQENDcch16/BtkQdAlC4E6jrYHGgGU18Io3gmhzJuwub6/fQJYNi/YBpCifhbDaAPXFvCBVxXbvfbNGFeN8DkjogWAd8DljV3KRutcEAeHMN/HXZ4p9bhncJHCyhNx52R0Kv/XNuQvYBnM+CP7xddXL5KaJw0TMAF8qjnMvegeK/SLHubhpKDKIrJDlvXoMX3y9xcSMZyBQ+tpyk5hzsa2Ns7LGdfWdbL6fZvHn92d7dgROH/730YBLtiZmEdGPkFnhX4kxmjVe2xgPfCtrRd6GHRtEh9zsL8xVe+pwSzj+OtwvletZZ/wLeKD71L+ZeHHWZ/gowABkp7AwwnEjFAAAAAElFTkSuQmCC);
+    background-position: right ;
+    background-repeat: no-repeat;
+    -moz-box-shadow: none;
+  }
+  input:required:valid {
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAepJREFUeNrEk79PFEEUx9/uDDd7v/AAQQnEQokmJCRGwc7/QeM/YGVxsZJQYI/EhCChICYmUJigNBSGzobQaI5SaYRw6imne0d2D/bYmZ3dGd+YQKEHYiyc5GUyb3Y+77vfeWNpreFfhvXfAWAAJtbKi7dff1rWK9vPHx3mThP2Iaipk5EzTg8Qmru38H7izmkFHAF4WH1R52654PR0Oamzj2dKxYt/Bbg1OPZuY3d9aU82VGem/5LtnJscLxWzfzRxaWNqWJP0XUadIbSzu5DuvUJpzq7sfYBKsP1GJeLB+PWpt8cCXm4+2+zLXx4guKiLXWA2Nc5ChOuacMEPv20FkT+dIawyenVi5VcAbcigWzXLeNiDRCdwId0LFm5IUMBIBgrp8wOEsFlfeCGm23/zoBZWn9a4C314A1nCoM1OAVccuGyCkPs/P+pIdVIOkG9pIh6YlyqCrwhRKD3GygK9PUBImIQQxRi4b2O+JcCLg8+e8NZiLVEygwCrWpYF0jQJziYU/ho2TUuCPTn8hHcQNuZy1/94sAMOzQHDeqaij7Cd8Dt8CatGhX3iWxgtFW/m29pnUjR7TSQcRCIAVW1FSr6KAVYdi+5Pj8yunviYHq7f72po3Y9dbi7CxzDO1+duzCXH9cEPAQYAhJELY/AqBtwAAAAASUVORK5CYII=);
+    background-position: right;
+    background-repeat: no-repeat;
+  }
+
+</style>
+
+        <script src="resources/plantilla/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+
+
+
+ <script src="resources/js/jquery-2.1.4.js"></script>
+
+ <script >
+
+ var seleccion=0;
+ var Administrador="";
+ var estado="si";
+ var licenciatura="";
+function vacio () {
+  if ($("#txtidNomina").val()=="" &&
+    $("#txtNombre").val()=="" &&
+    $("#txtApellidoPa").val()=="" &&
+    $("#txtApellidoMa").val()=="" &&
+    $("#txtCorreo").val()=="" &&
+    $("#txtTelefono").val()=="" &&
+    $("#txtTitulo").val()=="") {
+  //$("#mensaje").val("error introdusca todos los datos")
+
+    return true;
+
+  } else{
+    return false;
+
+  }
+}
+function cleanTxt () {
+    $("#txtidNomina").val("");
+    $("#txtNombre").val("");
+    $("#txtApellidoPa").val("");
+    $("#txtApellidoMa").val("");
+    $("#txtCorreo").val("");
+    $("#txtTelefono").val("");
+    $("#txtTitulo").val("");
+}
+
+function isObjEmpty (obj) {
+  for(var name in obj){
+    return false;
+  }
+  return true;
+}
+function mensaje (dato) {
+  $("#mensaje").html(dato);
+  $("#mensaje").fadeOut(3000);
+  $("#mensaje").fadeIn(2000);
+  $("#mensaje").hide("slow"); 
+}
+
+
+function mensajeBus (dato) {
+  $("#mensajeBus").html(dato);
+  $("#mensajeBus").fadeOut(3000);
+  $("#mensajeBus").fadeIn(2000);
+  $("#mensajeBus").hide("slow");
+}
+
+
+function activatInputs () {
+  $("#txtidNomina").prop("disabled",false);
+  $("#txtNombre").prop("disabled",false);
+  $("#txtApellidoPa").prop("disabled",false);
+  $("#txtApellidoMa").prop("disabled",false);
+  $("#txtCorreo").prop("disabled",false);
+  $("#txtTelefono").prop("disabled",false);
+  $("#txtTitulo").prop("disabled",false);
+}
+
+function validate () {
+  var i=0;
+  $(" input:required:invalid ").each(function() {
+    i++;
+    console.log(i);
+  });
+  if(i==0){
+    return true;
+  }else{
+    return false;
+  }
+
+}
+
+
+  $(document).ready(function (){
+
+        var p;
+        var u;  
+        $.post("resources/php/session.php",{op:"op2"},function( data ){
+           p=data.pas;
+           u=data.user;   
+            $("#sesion").html("Bienvenido "+data.nombre);      
+        },'json');
+
+        $("#btnEliminar").prop('disabled',true);
+        $("#btnLimpiar").prop('disabled',true);
+
+      //Expresiones para validar
+      /*  var correo = /^[a-zA-Z0-9_\.\-]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-\.]+$/;
+        var nomina = /^[0-9]+$/;
+        var nomb= /^([A-Za-z ñáéíóú\s]{2,60})$/;
+        var ap = /^([A-Za-z ñáéíóú]*)$/;
+        var tit = /^([A-Za-z\.\s]*)$/;
+        var telefono = /^(1\s*[-\/\.]?)?(\((\d{3})\)|(\d{3}))\s*[-\/\.]?\s*(\d{3})\s*[-\/\.]?\s*(\d{4})\s*(([xX]|[eE][xX][tT])\.?\s*(\d+))*$/;*/
+
+        
+      $("#btnGuardar").click(function (evento) {
+        if (vacio()==false ) {
+
+          evento.preventDefault();
+              /* VNomina= $("#txtidNomina").val();
+               VNombre= $("#txtNombre").val();
+               VApellidoP= $("#txtApellidoPa").val();
+               VApellidoM= $("#txtApellidoMa").val();
+               VTelefono= $("#txtTelefono").val();
+               VCorreo= $("#txtCorreo").val();
+               VTitulo= $("#txtTitulo").val();
+
+                if(VNomina == "" || !nomina.test(VNomina)){
+                    $("#mensaje0").fadeIn("slow"); 
+                    return false;
+                    $("#txtidNomina").css("has-error");
+                }
+                else{
+                    $("#mensaje0").fadeOut();// no se muestra
+                    if (VNombre=="" || !nomb.test(VNombre)) {
+                       $("#mensaje1").fadeIn("slow");
+                         return false;  
+                    }
+                    else{
+                         $("#mensaje1").fadeOut();
+
+                         if (VApellidoP=="" || !ap.test(VApellidoP)) {
+                            $("#mensaje2").fadeIn("slow");
+                            return false;  
+                          }
+                          else{
+                               $("#mensaje2").fadeOut();
+                                //Si correo está vacío y la expresión NO corresponde -test es función de JQuery
+                                //Muestra el mensaje
+                                //Con false sale de los if's y espera a que sea pulsado de nuevo el botón de enviar
+                                if(VApellidoM == "" || !ap.test(VApellidoM)){
+                                    $("#mensaje3").fadeIn("slow");
+                                    return false;
+                                }
+                                else{
+                                    $("#mensaje3").fadeOut();
+             
+                                    if(VCorreo == "" || !correo.test(VCorreo)){
+                                        $("#mensaje4").fadeIn("slow");
+                                        return false;
+                                    }
+                                    else{
+                                        $("#mensaje4").fadeOut();
+
+                                         if(VTelefono == "" || !telefono.test(VTelefono)){
+                                          $("#mensaje5").fadeIn("slow");
+                                          return false;
+                                          }
+                                          else{
+                                              $("#mensaje5").fadeOut();
+
+                                               if(VTitulo == "" || !tit.test(VTitulo)){
+                                                  $("#mensaje6").fadeIn("slow");
+                                                  return false;
+                                                }
+                                                else{
+                                                    $("#mensaje6").fadeOut();
+
+                                                    }//else1
+
+
+                                              }//else2
+                                          }//else3
+                                      }//else4
+                                  }//else5
+                        }//else6
+                    }//else7*/
+
+
+
+           //alert('No es vacio');
+
+            if( $("#Admin").prop('checked') ) {
+                     Administrador="si";
+            }else{
+              Administrador="no";
+            }
+
+          $.post("resources/php/ControlProfesor.php",
+          {idmaestro:$("#txtidNomina").val(),operacion:"buscar"},function (data){
+            if (isObjEmpty(data)==false) {
+             // alert('ya existe');
+               
+              if(seleccion==1){
+                //alert('se puede modificar');
+
+                 $.post("resources/php/ControlProfesor.php",
+                      {licenciatura:$("#miCombo option:selected").text(),operacion:"ContadorAdministrador"},function (data){
+                        if (isObjEmpty(data)==false) {
+                            //alert(data.contador);
+
+                          if(data.contador >=1 && Administrador=="si"){
+                            // ya hay un administrador
+                            mensaje("Ya existe un administador en la carrera");
+                            $("#mensaje").css("color","red");
+                          }else{
+
+                            if(data.contador ==0 && Administrador=="si"){
+                                $("#txtidNomina").prop("disabled",true);
+
+                          $("#mensaje").load("resources/php/ControlProfesor.php",{idmaestro:$("#txtidNomina").val(),nombre:$("#txtNombre").val(),apellidoPaterno:$("#txtApellidoPa").val(),apellidoMaterno:$("#txtApellidoMa").val(),telefono:$("#txtTelefono").val(),email:$("#txtCorreo").val(),titulo:$("#txtTitulo").val(),admin: Administrador,licenciatura:$("#miCombo option:selected").text(),operacion:"modificarProcedi"},function () {
+                            mensaje("Profesor modificado con exito");
+                            $("#mensaje").css("color","#000");
+                            cleanTxt();
+                              $("#btnEliminar").prop('disabled',true);
+                              $("#txtidNomina").prop('disabled',false); 
+                          });
+                          $("#txtidNomina").prop("disabled",false);
+
+                            // no hay administrador
+
+                            }else{
+                                if(data.contador >=1 && Administrador=="no"){
+                                $("#txtidNomina").prop("disabled",true);
+
+                                $("#mensaje").load("resources/php/ControlProfesor.php",{idmaestro:$("#txtidNomina").val(),nombre:$("#txtNombre").val(),apellidoPaterno:$("#txtApellidoPa").val(),apellidoMaterno:$("#txtApellidoMa").val(),telefono:$("#txtTelefono").val(),email:$("#txtCorreo").val(),titulo:$("#txtTitulo").val(),admin: Administrador,licenciatura:$("#miCombo option:selected").text(),operacion:"modificarProcedi"},function () {
+                                  mensaje("Profesor modificado con exito");
+                                  $("#mensaje").css("color","#000");
+                                  cleanTxt();
+                                  $("#btnEliminar").prop('disabled',true);
+                                  $("#txtidNomina").prop('disabled',false); 
+                                });
+                                $("#txtidNomina").prop("disabled",false);
+
+                                  // no hay administrador
+
+                                  }
+
+                            }
+
+                          }
+
+
+                        } else{
+                            //  
+                            //
+                        }  
+                      },'json');
+
+
+
+
+
+
+
+               
+
+
+              }else{
+                //alert('NO se puede modificar');
+                mensaje("Profesor ya dado de alta");
+                $("#mensaje").css("color","red");
+              }
+
+            } else{
+              //alert('dentro del else');
+              // para ver si ya hay un jefe de carrera
+              $.post("resources/php/ControlProfesor.php",
+                      {licenciatura:$("#miCombo option:selected").text(),operacion:"ContadorAdministrador"},function (data){
+                        if (isObjEmpty(data)==false) {
+
+
+                          if(data.contador >=1 && Administrador=="si"){
+                            // ya hay un administrador
+                            mensaje("Ya existe un administador en la carrera");
+                            $("#mensaje").css("color","red");
+                          }else{
+                            if(data.contador >=1 && Administrador=="no"){
+                                 $("#mensaje").load("resources/php/ControlProfesor.php",{idmaestro:$("#txtidNomina").val(),nombre:$("#txtNombre").val(),apellidoPaterno:$("#txtApellidoPa").val(),apellidoMaterno:$("#txtApellidoMa").val(),telefono:$("#txtTelefono").val(),email:$("#txtCorreo").val(),titulo:$("#txtTitulo").val(),admin: Administrador, licenciatura:$("#miCombo option:selected").text(), operacion:"guardarProcedi"},function () {
+                                  mensaje("Profesor guardo con exito");
+                                  $("#mensaje").css("color","#000");
+                                  cleanTxt();
+                                });
+
+                            // no hay administrador
+
+
+                            }
+                          }
+
+
+                        } else{
+                            //  
+                            //
+                        }  
+                      },'json');
+
+
+              
+            }  
+          },'json');
+
+          }else{
+            //alert('mensaje');
+            mensaje("no puede dejar cajas de texto vacias");
+            $("#mensaje").css("color","red");
+          }
+        });
+
+        $("#btnBuscar").click(function(evento){
+         // alert('hola busca');
+                
+            evento.preventDefault();
+            if($.trim($("#txtidNomina").val())!=''){
+
+              /*VNomina= $("#txtidNomina").val();
+
+
+              if(VNomina == "" || !nomina.test(VNomina)){
+                    $("#mensaje0").fadeIn("slow"); 
+                    return false;
+                    $("#txtidNomina").css("has-error");
+                }
+                else{
+                    $("#mensaje0").fadeOut();// no se muestra
+                  }*/
+
+
+            $.post("resources/php/ControlProfesor.php",{idmaestro:$("#txtidNomina").val(),operacion:"buscar"},
+              function (data){
+                if (isObjEmpty(data)==false) {
+                   $("#txtidNomina").val(data.idmaestro);
+                   $("#txtNombre").val(data.nombre);
+                   $("#txtApellidoPa").val(data.apellidoPaterno);
+                   $("#txtApellidoMa").val(data.apellidoMaterno);
+                   $("#txtTelefono").val(data.telefono);
+                   $("#txtCorreo").val(data.email);
+                   $("#txtTitulo").val(data.titulo);
+                   var resp=data.administrador;
+                   //alert(resp);
+                   if(resp==estado){
+                    //alert('si es jefe de carrera');
+                      $("#Admin").prop('checked', true); 
+                   }else{
+                     //alert('NO es jefe de carrera');
+                    $("#Admin").prop('checked', false);
+                   }
+
+                   licenciatura=data.licenciatura;
+                   if(licenciatura=="Informatica"){
+                    $("#miCombo").val("1");
+                   }else{
+                      if(licenciatura=="Ciencias Empresariales"){
+                      $("#miCombo").val("2");
+                     }else{
+                          if(licenciatura=="Administración Pública"){
+                          $("#miCombo").val("3");
+                         }else{
+                               if(licenciatura=="Derecho"){
+                                $("#miCombo").val("4");
+                                }
+                         }
+                      
+                     }
+
+                   }
+
+                   //mensajeBus("Profesor encontrado con exito");
+                   //$("#mensajeBus").css("color","#000");
+                  activatInputs();
+                  seleccion=1;
+                  $("#btnEliminar").prop('disabled',false);
+                  $("#btnLimpiar").prop('disabled',false);
+                 $("#txtidNomina").prop('disabled',true);
+
+                } else{
+                  mensajeBus("Profesor no encontrado");
+                  $("#mensajeBus").css("color","red");
+                }  
+                
+               },'json');
+
+            }else{
+              mensajeBus("No deje vacio la caja de texto");
+              $("#mensajeBus").css("color","red");
+            }
+        });
+
+
+          $("#btnEliminar").click(function(evento) {
+            $("#txtidNomina").prop('disabled',false);
+            evento.preventDefault();
+
+              if (vacio()==false ) {
+
+              evento.preventDefault();
+
+                      $.post("resources/php/ControlProfesor.php",
+                      {idmaestro:$("#txtidNomina").val(),operacion:"buscar"},function (data){
+                        if (isObjEmpty(data)==false) {
+                            $("#mensaje").load("resources/php/ControlProfesor.php",{idmaestro:$("#txtidNomina").val(),operacion:"eliminar"},function () {
+                              mensaje("Profesor eliminado con exito");
+                              $("#mensaje").css("color","#000");
+                              cleanTxt();
+                              $("#btnEliminar").prop('disabled',true);
+                              $("#txtidNomina").prop('disabled',false);   
+                            });
+                        } else{
+                            mensaje("Profesor no existe");  
+                            $("#mensaje").css("color","red");
+                        }  
+                      },'json');
+
+              }else{
+                mensaje("no puede dejar cajas de texto vacias");
+                $("#mensaje").css("color","red");
+              }
+          });
+
+
+    
+    $("#btnLimpiar").click(function  (e)   {
+      e.preventDefault();
+      cleanTxt();
+       update=0; 
+      $("#btnEliminar").prop('disabled',true);
+      $("#txtidNomina").prop('disabled',false);
+      $("#btnLimpiar").prop('disabled',true);
+    });
+
+       $('ul.nav li.dropdown').hover(function() {
+        $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
+      }, function() {
+        $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
+      });
+
+
+  });
+
+ </script>
+
+    </head>
+    <body>
+  
+    <header class="site-header" id="top">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="row">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                          <i class="fa fa-bars"></i>
+                        </button>
+                        <div class="logo-wrapper">
+                            <a class="navbar-brand" href="index.html">
+                                SGC<em>Unistmo</em>
+                                <span class="logo-s"></span>
+                            </a>
+                        </div>  
+                    </div>
+                    <div class="collapse navbar-collapse" id="main-menu">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="index.html">Cerrar Sesion</a>
+
+                            </li>
+                            <li><a href="VistaConfiguracion.html">Configuración</a></li>
+
+                            <li class="dropdown"><a href="VistaAdministrador.html"  class="dropdown-toggle" data-toggle="dropdown">Menu <b class="caret"></b> </a>
+                              <ul class="dropdown-menu">
+                                 <li><a href="VistaAdministrador.html" >Vista Principal</a></li>
+                                <li class="divider"></li>
+                                <li><a href="VistaAdministradorAlumno.html">Alumno</a></li>
+                                <li class="divider"></li>
+                                <li><a href="VistaAdministradorProfesor.html">Profesor</a></li>
+                                <li class="divider"></li>
+                                <li><a href="VistaAdministradorProfesorMateria.html">Asignar materias</a></li>
+                                <li class="divider"></li>
+                                <li><a href="VistaSubirArchivos.html">Subir archivos</a></li>
+                              </ul>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div> 
+            </div>
+        </nav>
+    </header>
+
+
+
+    <div class="main-content">
+      
+                    
+      <div class="container margen">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+                
+                <h3 id="sesion" style="text-align: right; margin-right: 0px; "></h3>
+              
+          </div>  
+
+          <br>
+          <div class="container" style="margin-top: 50px;">
+              <div class="panel-group">
+                <div class="panel panel-primary">
+                  <div class="panel-heading colorPanel"><center><h3>Registro de profesores</h3></center></div>
+                  <div class="panel-body ">
+                    
+
+                     <div class="col-md-12 col-sm-12 col-xs-12">
+                          <div class="col-md-4 col-xs-12 col-sm-4"></div>
+                          <div class="col-md-4 col-xs-12 col-sm-4">
+
+                             <div  id="claseboton2" class="boton2"><p id="mensajeBus" class="men2"></p></div>
+
+
+                            <form class="form-horizontal ">
+                                <div class="form-group ">
+                                    <label class="control-label col-xs-3" style="text-align: left;">Nomina:</label>
+                                   
+                                      <div class="col-lg-9 col-sm-9 col-xs-12 col-md-9">
+                                        <div class="input-group">
+                                          <input type="text" placeholder="Introduzca la nomina" class="form-control" id="txtidNomina" title="Introduzca un num. de nomina correcto, solo números"  pattern="[0-9]{3}" required>
+                                          <span class="input-group-btn">
+                                            <button class="btn btn-primary" type="button" id="btnBuscar">
+                                                 <span class="glyphicon glyphicon-search"></span> </button>
+                                          </span>
+                                        </div>
+                                      </div>
+                
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-xs-3"  style="text-align: left;">Nombre:</label>
+                                    <div class="col-xs-9">
+                                        <input type="text" class="form-control" placeholder="Introduzca el nombre" id="txtNombre" title="Introduzca un nombre correcto, solo letras"  pattern="([A-Za-z ñáéíóú\s]{2,60})" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-xs-3"  style="text-align: left;">Apellido Paterno:</label>
+                                    <div class="col-xs-9">
+                                        <input type="text" class="form-control" placeholder="Introduzca el apellido paterno" id="txtApellidoPa" title="Introduzca un apellido correcto, solo letras"  pattern="([A-Za-z ñáéíóú]*)" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-xs-3"  style="text-align: left;">Apellido Materno:</label>
+                                    <div class="col-xs-9">
+                                        <input type="text" class="form-control" placeholder="Introduzca el apellido materno" id="txtApellidoMa" title="Introduzca un apellido correcto, solo letras"  pattern="([A-Za-z ñáéíóú]*)" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                  <label class="control-label col-xs-3" style="text-align: left;">Carrera:</label>
+                                  <div class="col-xs-9">
+                                      <select id ="miCombo" class = "form-control input-sm" >
+                                         <option value = "1">Informatica</option>
+                                         <option value = "2">Ciencias Empresariales</option>
+                                         <option value = "3">Administración Pública</option>
+                                         <option value = "4">Derecho</option>
+                                      </select>
+                                  </div>
+                              </div>
+                                
+                                <div class="form-group">
+                                  <label class="control-label col-xs-3"  style="text-align: left;">Email:</label>
+                                    <div class="col-xs-9">
+                                      <input type="email" class="form-control"  placeholder="Introduzca el email" id="txtCorreo" title="porfavor introduzca un email correcto"  required>
+                                    </div>
+                                </div>
+
+                                   <div class="form-group">
+                                    <label class="control-label col-xs-3"  style="text-align: left;">Telefono:</label>
+                                    <div class="col-xs-9">
+                                        <input type="tel" class="form-control" placeholder="Introduzca el telefono" id="txtTelefono" title="porfavor introdusca un telefono correcto"  pattern="(1\s*[-\/\.]?)?(\((\d{3})\)|(\d{3}))\s*[-\/\.]?\s*(\d{3})\s*[-\/\.]?\s*(\d{4})\s*(([xX]|[eE][xX][tT])\.?\s*(\d+))*" required>
+                                    </div>
+                                </div>
+                                   <div class="form-group">
+                                    <label class="control-label col-xs-3"  style="text-align: left;">Titulo:</label>
+                                    <div class="col-xs-9">
+                                        <input type="text" class="form-control" placeholder="Introduzca el titulo" id="txtTitulo" title="porfavor introduzca un titulo correcto ej: M.C" pattern="([A-Za-z\.\s]*)"  required>
+                                    </div>
+                                </div>
+
+                              <div class="row" style="margin-bottom: 20px;">
+                                <div class="col-sm-12">
+                                   <label class="checkbox-inline"><input id="Admin" type="checkbox" value="">Jefe de carrera</label>
+                                </div>
+                             
+                              </div>
+                                <center>
+                                  <div class="form-group">
+                                  <div  id="claseboton" class="boton" style="margin-top: 0px;"><p id="mensaje" class="men"></p></div>
+                                  <div class="col-xs-offset-1 col-xs-12">
+                                      <button type="button" id="btnGuardar" class="btn btn-primary  btn-sm">
+                                          <span class="glyphicon glyphicon-floppy-disk"></span>  Guardar</button>
+                                      <button type="button" id="btnEliminar" class="btn btn-primary btn-sm">
+                                          <span class="glyphicon glyphicon-trash"></span>   Eliminar</button>
+                                      <button type="button" id="btnLimpiar" class="btn btn-primary btn-sm">
+                                          <span class="glyphicon glyphicon-remove"></span>   Cancelar</button>
+                                  </div>
+                              </div>
+                                </center>
+                                   
+                            </form>
+                          </div>
+                          <div class="col-md-4 col-xs-12 col-sm-4"></div>
+                               
+           
+                                
+                           
+                          </div>
+
+                            
+
+                        </div>
+                           
+
+                  </div>
+                </div>
+
+              </div>
+          
+      </div><!-- container END -->
+      
+    </div><!-- main content END -->
+
+      <footer id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-sm-12 ">
+                    <p class="copyright">Copyright &copy; 2015 <a href="#">Universidad del Istmo</a></p>
+                </div>
+                <div class="col-md-6 col-sm-6 col-sm-12">
+                    <ul class="social">
+                        <li><a href="#" class="fa fa-facebook"></a></li>
+                        <li><a href="#" class="fa fa-twitter"></a></li>
+                    
+                    </ul>
+                </div>
+              </div>
+            </div>
+      </footer> 
+        <script src="resources/plantilla/js/vendor/jquery-1.11.0.min.js"></script>
+        <script>window.jQuery || document.write('<script src="resources/plantilla/js/vendor/jquery-1.11.0.min.js"><\/script>')</script>
+        <script src="resources/plantilla/js/vendor/bootstrap.js"></script>
+        <script src="resources/plantilla/js/main.js"></script>
+    </body>
+</html>

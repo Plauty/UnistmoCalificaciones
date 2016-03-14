@@ -1,0 +1,4 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SetArchivo`(in nom varchar(100), in descri varchar(300), in carr varchar(45))
+BEGIN
+	insert into archivos(nombre, descripcion,carrera) values (nom,descri,carr); 
+END

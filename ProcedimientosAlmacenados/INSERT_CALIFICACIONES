@@ -1,0 +1,4 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `INSERT_CALIFICACIONES`( IN Idcalificaciones  Varchar(45))
+BEGIN
+  INSERT INTO calificaciones ( idcalificaciones,1ºparcial,2ºparcial,3ºparcial,ordinario,1ºextraordinario,2ºextraordinario,especial,promedio) VALUES (Idcalificaciones,0,0,0,0,0,0,0,0);
+  END

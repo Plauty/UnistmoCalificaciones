@@ -1,0 +1,5 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `AsignacionMateria`(in idMaes varchar(10), in idMateria int(11), in cicloEs  varchar(45))
+BEGIN
+	insert into maestro_materia values(idMaes,idMateria,cicloEs);
+    update materias set asignado='true' where idmaterias=idMateria;
+END

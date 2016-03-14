@@ -1,0 +1,4 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteAlumno`(in idAl VARCHAR(10))
+BEGIN
+		delete from alumnos where idAlumno=idAl;
+END

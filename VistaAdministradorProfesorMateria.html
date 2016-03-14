@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+ <?php 
+            session_start();
+  ?>
+<html class="no-js">
+    <head>
+        <meta charset="utf-8">
+        <meta name ="author" content ="Plautila Vasquez Martinez, Cosijopii Garcia Garcia">
+        <link rel="stylesheet" href="resources/css/EstiloAdminProfeMateria.css">
+        <title>Asignación de Materias</title>
+        <link rel="stylesheet" href="resources/plantilla/css/bootstrap.min.css">
+        <link rel="stylesheet" href="resources/plantilla/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="resources/plantilla/css/templatemo-style.css">
+        <link rel="stylesheet" href="resources/plantilla/css/font-awesome.min.css">
+
+        <!-- Favicon and touch icons -->
+        <link rel="shortcut icon" href="resources/ico/Sgc16x16.png">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="resources/ico/Sgc144x144.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="resources/ico/Sgc114x114png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="resources/ico/Sgc72x72.png">
+        <link rel="apple-touch-icon-precomposed" href="resources/ico/Sgc57x57.png">
+
+<style type="text/css">
+
+  input:required:invalid, input:focus:invalid {
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAeVJREFUeNqkU01oE1EQ/mazSTdRmqSxLVSJVKU9RYoHD8WfHr16kh5EFA8eSy6hXrwUPBSKZ6E9V1CU4tGf0DZWDEQrGkhprRDbCvlpavan3ezu+LLSUnADLZnHwHvzmJlvvpkhZkY7IqFNaTuAfPhhP/8Uo87SGSaDsP27hgYM/lUpy6lHdqsAtM+BPfvqKp3ufYKwcgmWCug6oKmrrG3PoaqngWjdd/922hOBs5C/jJA6x7AiUt8VYVUAVQXXShfIqCYRMZO8/N1N+B8H1sOUwivpSUSVCJ2MAjtVwBAIdv+AQkHQqbOgc+fBvorjyQENDcch16/BtkQdAlC4E6jrYHGgGU18Io3gmhzJuwub6/fQJYNi/YBpCifhbDaAPXFvCBVxXbvfbNGFeN8DkjogWAd8DljV3KRutcEAeHMN/HXZ4p9bhncJHCyhNx52R0Kv/XNuQvYBnM+CP7xddXL5KaJw0TMAF8qjnMvegeK/SLHubhpKDKIrJDlvXoMX3y9xcSMZyBQ+tpyk5hzsa2Ns7LGdfWdbL6fZvHn92d7dgROH/730YBLtiZmEdGPkFnhX4kxmjVe2xgPfCtrRd6GHRtEh9zsL8xVe+pwSzj+OtwvletZZ/wLeKD71L+ZeHHWZ/gowABkp7AwwnEjFAAAAAElFTkSuQmCC);
+    background-position: right ;
+    background-repeat: no-repeat;
+    -moz-box-shadow: none;
+  }
+  input:required:valid {
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAepJREFUeNrEk79PFEEUx9/uDDd7v/AAQQnEQokmJCRGwc7/QeM/YGVxsZJQYI/EhCChICYmUJigNBSGzobQaI5SaYRw6imne0d2D/bYmZ3dGd+YQKEHYiyc5GUyb3Y+77vfeWNpreFfhvXfAWAAJtbKi7dff1rWK9vPHx3mThP2Iaipk5EzTg8Qmru38H7izmkFHAF4WH1R52654PR0Oamzj2dKxYt/Bbg1OPZuY3d9aU82VGem/5LtnJscLxWzfzRxaWNqWJP0XUadIbSzu5DuvUJpzq7sfYBKsP1GJeLB+PWpt8cCXm4+2+zLXx4guKiLXWA2Nc5ChOuacMEPv20FkT+dIawyenVi5VcAbcigWzXLeNiDRCdwId0LFm5IUMBIBgrp8wOEsFlfeCGm23/zoBZWn9a4C314A1nCoM1OAVccuGyCkPs/P+pIdVIOkG9pIh6YlyqCrwhRKD3GygK9PUBImIQQxRi4b2O+JcCLg8+e8NZiLVEygwCrWpYF0jQJziYU/ho2TUuCPTn8hHcQNuZy1/94sAMOzQHDeqaij7Cd8Dt8CatGhX3iWxgtFW/m29pnUjR7TSQcRCIAVW1FSr6KAVYdi+5Pj8yunviYHq7f72po3Y9dbi7CxzDO1+duzCXH9cEPAQYAhJELY/AqBtwAAAAASUVORK5CYII=);
+    background-position: right;
+    background-repeat: no-repeat;
+  }
+
+</style>
+
+        <script src="resources/plantilla/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+
+
+
+ <script src="resources/js/jquery-2.1.4.js"></script>
+
+
+ <script >
+
+
+ var i=1;
+
+
+
+ function vacio () {
+  if ($("#txtidNomina").val()=="" &&
+    $("#txtNombre").val()=="" &&
+    $("#txtCodigoMateria").val()=="" &&
+    $("#txtCicloEscolar").val()=="") {
+  //$("#mensaje").val("error introdusca todos los datos")
+
+    return true;
+
+  } else{
+    return false;
+
+  }
+}
+function cleanTxt () {
+    $("#txtidNomina").val("");
+    $("#txtNombre").val("");
+    $("#txtCodigoMateria").val("");
+   // $("#txtCicloEscolar").val("");
+
+}
+
+function isObjEmpty (obj) {
+  for(var name in obj){
+    return false;
+  }
+  return true;
+}
+function mensaje (dato) {
+  $("#mensaje").html(dato);
+  $("#mensaje").fadeOut(3000);
+  $("#mensaje").fadeIn(2000);
+   $("#mensaje").hide("slow");
+}
+
+function mensajeBus (dato) {
+  $("#mensajeBus").html(dato);
+  $("#mensajeBus").fadeOut(3000);
+  $("#mensajeBus").fadeIn(2000);
+
+}
+
+function activatInputs () {
+  $("#txtidNomina").prop("disabled",false);
+  $("#txtCodigoMateria").prop("disabled",false);
+  $("#txtCicloEscolar").prop("disabled",false);
+  
+}
+
+function validate () {
+  var i=0;
+  $(" input:required:invalid ").each(function() {
+    i++;
+    console.log(i);
+  });
+  if(i==0){
+    return true;
+  }else{
+    return false;
+  }
+
+}
+
+
+
+  // javascript
+  $(function(){
+
+            $("#cuerpo").on("click", "button[class*=Eliminar]", function(){
+                    //alert('hola : '+ $(this).attr( "id" )+"");
+                    var idma=$(this).attr( "id" );
+                     //alert('hola2 : '+ idma);
+                    eliminarMateri(idma);
+                   
+
+              });
+
+
+            $("#cuerpoM").on("click", "button[class*=Asignar]", function(){
+                    //alert('hola : '+ $(this).attr( "id" )+"");
+                    var idma=$(this).attr( "id" );
+                     //alert('hola2 : '+ idma);
+                    AsignarMateria(idma);
+                   
+
+              });
+
+  })
+
+  function eliminarMateri(idRecib){
+    if ($('#txtCicloEscolar').is (':visible')) {
+      $("#mensajeBus").load("resources/php/ControlProfesorMateria.php",{id:idRecib ,operacion:"eliminarMateria" },function () {
+                        mensajeBus("materia eliminado con exito");
+                        $("#mensajeBus").css("color","#000");
+
+
+                       cargarTabla();  
+                       cargarTablaMaerias();       
+                       
+                      });
+
+    }else{
+      $("#mensajeBus").load("resources/php/ControlProfesorMateria.php",{id:idRecib ,operacion:"eliminarMateria" },function () {
+                        mensajeBus("materia eliminado con exito");
+                        $("#mensajeBus").css("color","#000");
+
+
+                       cargarTablaDos();  
+                       cargarTablaMaerias();       
+                       
+                      });
+    }
+
+          
+
+  }
+
+  function AsignarMateria(idmateria){
+
+    if ($('#txtCicloEscolar').is (':visible')) {
+       $("#mensajeBus").load("resources/php/ControlProfesorMateria.php",{idmaestro:$("#txtidNomina").val(),idMateria:idmateria,cicloEscolar:$("#txtCicloEscolar option:selected").text(),operacion:"guardar"},function () {
+                        mensajeBus("Asignación de materia guarda");
+                        $("#mensajeBus").css("color","#000");
+
+
+                       cargarTabla();  
+                       cargarTablaMaerias();       
+                       $("#txtCodigoMateria").val("");
+
+                        //cleanTxt();
+                      });
+     }else{
+       $("#mensajeBus").load("resources/php/ControlProfesorMateria.php",{idmaestro:$("#txtidNomina").val(),idMateria:idmateria,cicloEscolar:$("#InsertCicloEscolar").val(),operacion:"guardar"},function () {
+                        mensajeBus("Asignación de materia guarda");
+                        $("#mensajeBus").css("color","#000");
+
+
+                       cargarTablaDos();  
+                       cargarTablaMaerias();       
+                       $("#txtCodigoMateria").val("");
+
+                        //cleanTxt();
+                      });
+     }
+
+           
+                    
+  }
+
+  var meses = new Array ("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+
+    var cicloA="";
+    var cicloB="";
+
+       var anio = (new Date).getFullYear();
+       var mes = (new Date).getMonth();
+       var dia = (new Date).getDate();
+       
+
+  $(document).ready(function () {
+
+        var p;
+        var u;  
+        $.post("resources/php/session.php",{op:"op2"},function( data ){
+           p=data.pas;
+           u=data.user;   
+            $("#sesion").html("Bienvenido "+data.nombre);      
+        },'json');
+
+        //alert(dia+" "+meses[mes]+ " "+anio);
+        if(mes<=1 ){
+          cicloA=(anio-1)+"-"+anio+"A";
+          $("#A").text(cicloA);
+          cicloB=(anio-1)+"-"+anio+"B";
+          $("#B").text(cicloB);
+
+         // alert(cicloA);
+        }else{
+          if(mes>=2 && mes<6){
+           cicloA=(anio-1)+"-"+anio+"A";
+          $("#A").text(cicloA);
+          cicloB=(anio-1)+"-"+anio+"B";
+          $("#B").text(cicloB);
+         // alert(cicloB);
+
+        }else{
+          if (mes>=7 && mes<=11) {
+              cicloA=(anio)+"-"+(anio+1)+"A";
+              $("#A").text(cicloA);
+              cicloB=(anio)+"-"+(anio+1)+"B";
+              $("#B").text(cicloB);
+             // alert(cicloA);
+          }
+        }
+        }
+        
+
+     var valCicloEsc = /^[0-9]{4}[\-][0-9]{4}[A-B]$/;
+     var nomina = /^[0-9]+$/;
+     var valCodigoMat= /^[0-9]{4}$/;
+
+        
+    
+    $("#btnGuardar").click(function (evento) {
+        if (vacio()==false ) {
+          evento.preventDefault();
+
+              //VCiE= $("#txtCicloEscolar").val();
+              VNomina= $("#txtidNomina").val();
+              VCodMat= $("#txtCodigoMateria").val();
+
+          
+
+
+            if(VNomina == "" || !nomina.test(VNomina)){
+                    $("#mensaje0").fadeIn("slow"); 
+                    return false;
+                }
+                else{
+                    $("#mensaje0").fadeOut();// no se muestra
+
+                       if(VCodMat == "" || !valCodigoMat.test(VCodMat)){
+                            $("#mensaje2").fadeIn("slow"); 
+                            return false;
+                          }
+                          else{
+                              $("#mensaje2").fadeOut();// no se muestra
+                            }
+
+                      
+                  }
+
+
+             
+      $.post("resources/php/ControlProfesorMateria.php",
+          {idMateria:$("#txtCodigoMateria").val(),operacion:"BuscaExistenciaMat"},function (data){
+            if (isObjEmpty(data)==false) {
+             
+              //mensaje('materia si existe');
+
+
+                 $.post("resources/php/ControlProfesorMateria.php",
+                  {idmaestro:$("#txtidNomina").val(),idMateria:$("#txtCodigoMateria").val(),operacion:"buscarCodigoMateria"},function (data){
+                    if (isObjEmpty(data)==false) {
+                     
+                      mensaje("Materia ya asignada");
+                      $("#mensaje").css("color","red");
+
+                    } else{
+                      //alert('dentro del else');
+                      $("#mensaje").load("resources/php/ControlProfesorMateria.php",{idmaestro:$("#txtidNomina").val(),idMateria:$("#txtCodigoMateria").val(),cicloEscolar:$("#txtCicloEscolar option:selected").text(),operacion:"guardar"},function () {
+                        mensaje("Asignación de materia guardo con exito");
+                        $("#mensaje").css("color","#000");
+
+
+                       cargarTabla();           
+                       $("#txtCodigoMateria").val("");
+
+                        //cleanTxt();
+                      });
+                    }  
+                  },'json');
+              
+
+
+            } else{
+
+              mensaje('la materia introducida no existe en la base de datos');
+              $("#mensaje").css("color","red");
+
+              }  
+          },'json');
+
+
+
+         
+
+          }else{
+            //alert('mensaje');
+            mensaje("no puede dejar cajas de texto vacias");
+            $("#mensaje").css("color","red");
+          }
+        });
+
+
+
+    $("#btnBuscar").click(function(evento){
+         // alert('hola busca');
+
+            evento.preventDefault();
+
+            
+
+
+              VCiE= $("#InsertCicloEscolar").val();
+              VNomina= $("#txtidNomina").val();
+              VCodMat= $("#txtCodigoMateria").val();
+
+
+
+            if($.trim($("#txtidNomina").val())!='' && $('#txtCicloEscolar').is (':visible')){
+
+               if(VNomina == "" || !nomina.test(VNomina)){
+                    $("#mensaje0").fadeIn("slow"); 
+                    return false;
+                }
+                else{
+                    $("#mensaje0").fadeOut();// no se muestra
+                  }
+
+
+                  
+
+          
+            $.post("resources/php/ControlProfesorMateria.php",{idmaestro:$("#txtidNomina").val(),operacion:"buscar"},
+              function (data){
+                if (isObjEmpty(data)==false) {
+
+                   $("#txtidNomina").val(data.idmaestro);
+                  
+                   $("#txtNombre").val(data.nombre+" "+data.apellidoPaterno+" "+ data.apellidoMaterno);
+                   var admin=data.administrador;
+                   
+                  activatInputs();
+                  if(admin=="no"){
+
+
+                  
+                  //seleccion=1;
+
+
+                  if($.trim($("#txtCicloEscolar option:selected").text())!=''){
+
+                     $.post("resources/php/ControlProfesorMateria.php",
+                      {idmaestro:$("#txtidNomina").val(),cicloEscolar:$("#txtCicloEscolar option:selected").text(),operacion:"buscarCicloEscolarExiste"},function (data){
+                        if (isObjEmpty(data)==false) { 
+                         
+                              mensajeBus("Profesor tiene materia");
+                              $("#mensajeBus").css("color","#000");
+                              
+                              $("#cambio1").css("margin-top","45px");
+                              $("#cambio2").css("margin-top","45px");
+
+
+
+                             $("#cuerpo").load("resources/php/ControlProfesorMateria.php",{idmaestro:$("#txtidNomina").val(),cicloEscolar:$("#txtCicloEscolar option:selected").text(),operacion:"buscarMateria"},function (responseText, textStatus, XMLHttoRequest) {
+
+                               if(textStatus == "success")
+                                    {
+                                      //eliminarDatos( 1 );
+                                    }
+                          
+                            });
+                             
+                        } else{
+                            mensajeBus("Asignación no registrada"); 
+                            $("#mensajeBus").css("color","red");
+                            $("#cambio1").css("margin-top","45px");
+                            $("#cambio2").css("margin-top","45px");
+
+                                                      
+                          cargarTabla();
+                          //cleanTxt();
+                           // $("#cuerpo").remove();
+                        }  
+                      },'json');
+
+
+                  }
+                    else{
+                      mensajeBus("Seleccione o ingrese un ciclo Escolar"); 
+                                $("#mensajeBus").css("color","red");
+                                $("#cambio1").css("margin-top","45px");
+                                $("#cambio2").css("margin-top","45px");
+                     
+                      
+                        
+                      }
+
+                }else{
+                  mensajeBus("El administrador no puede tener materias");
+                  $("#mensajeBus").css("color","red");
+                  $("#cambio1").css("margin-top","45px");
+                  $("#cambio2").css("margin-top","45px");
+                  cleanTxt();
+
+                }
+
+                } else{
+                  mensajeBus("Error Profesor no encontrado");
+                  $("#mensajeBus").css("color","red");
+                  $("#cambio1").css("margin-top","45px");
+                  $("#cambio2").css("margin-top","45px");
+
+
+                  cleanTxt();
+                }  
+                
+               },'json');
+
+            }else{
+
+               if($.trim($("#txtidNomina").val())!='' && $('#InsertCicloEscolar').is (':visible')){
+
+               if(VNomina == "" || !nomina.test(VNomina)){
+                    $("#mensaje0").fadeIn("slow"); 
+                    return false;
+                }
+                else{
+                    $("#mensaje0").fadeOut();// no se muestra
+                      
+                      if(VCiE == "" || !valCicloEsc.test(VCiE)){
+                      $("#mensaje1").fadeIn("slow"); 
+                      return false;
+                      }
+                        else{
+                            $("#mensaje1").fadeOut();// no se muestra
+                          }
+                  }
+
+
+                  
+                  
+          
+            $.post("resources/php/ControlProfesorMateria.php",{idmaestro:$("#txtidNomina").val(),operacion:"buscar"},
+              function (data){
+                if (isObjEmpty(data)==false) {
+
+                   $("#txtidNomina").val(data.idmaestro);
+                  
+                   $("#txtNombre").val(data.nombre+" "+data.apellidoPaterno+" "+ data.apellidoMaterno);
+
+                   
+                  activatInputs();
+                  //seleccion=1;
+
+
+                  if($.trim($("#InsertCicloEscolar").val())!=''){
+
+                     $.post("resources/php/ControlProfesorMateria.php",
+                      {idmaestro:$("#txtidNomina").val(),cicloEscolar:$("#InsertCicloEscolar").val(),operacion:"buscarCicloEscolarExiste"},function (data){
+                        if (isObjEmpty(data)==false) { 
+                         
+                              mensajeBus("Profesor tiene materia");
+                              $("#mensajeBus").css("color","#000");
+                              
+                              $("#cambio1").css("margin-top","45px");
+                              $("#cambio2").css("margin-top","45px");
+
+                             
+                             $("#cuerpo").load("resources/php/ControlProfesorMateria.php",{idmaestro:$("#txtidNomina").val(),cicloEscolar:$("#InsertCicloEscolar").val(),operacion:"buscarMateria"},function (responseText, textStatus, XMLHttoRequest) {
+
+                               if(textStatus == "success")
+                                    {
+                                      //eliminarDatos( 1 );
+                                    }
+                          
+                            });
+                             
+                        } else{
+                            mensajeBus("Asignación no registrada"); 
+                            $("#mensajeBus").css("color","red");
+                            $("#cambio1").css("margin-top","45px");
+                            $("#cambio2").css("margin-top","45px");
+
+                          cargarTablaDos();
+                          //cleanTxt();
+                           // $("#cuerpo").remove();
+                        }  
+                      },'json');
+
+
+                  }
+                    else{
+                      mensajeBus("Seleccione o ingrese un ciclo Escolar"); 
+                                $("#mensajeBus").css("color","red");
+                                $("#cambio1").css("margin-top","45px");
+                                  $("#cambio2").css("margin-top","45px");
+
+                                  
+                      }
+
+                } else{
+                  mensajeBus("Error Profesor no encontrado");
+                  $("#mensajeBus").css("color","red");
+                  $("#cambio1").css("margin-top","45px");
+                  $("#cambio2").css("margin-top","45px");
+
+
+                  cleanTxt();
+                }  
+                
+               },'json');
+
+            }else{
+              mensajeBus("No deje vacio la caja de texto");
+              $("#mensajeBus").css("color","red");
+              $("#cambio1").css("margin-top","45px");
+              $("#cambio2").css("margin-top","45px");
+
+            }
+            }
+        });
+
+      $("#miCombo").change(function(){
+
+       // alert($("#miCombo option:selected").text());
+       
+        $("#cuerpoM").load("resources/php/ControlProfesorMateria.php",{licenciatura:$("#miCombo option:selected").text(),semestre: $("#ComboSemestre option:selected").val(),operacion:"buscarMatCarrera"},function (responseText, textStatus, XMLHttoRequest) {
+
+                          if(textStatus == "success")
+                              {
+                                //eliminarDatos();
+                              }
+                          
+                });
+
+
+
+      });
+
+
+         $("#ComboSemestre").change(function(){
+
+       // alert($("#miCombo option:selected").text());
+       
+        $("#cuerpoM").load("resources/php/ControlProfesorMateria.php",{licenciatura:$("#miCombo option:selected").text(),semestre: $("#ComboSemestre option:selected").val(),operacion:"buscarMatCarrera"},function (responseText, textStatus, XMLHttoRequest) {
+
+                          if(textStatus == "success")
+                              {
+                                //eliminarDatos();
+                              }
+                          
+                });
+
+
+
+      });
+
+     $("#btnGuardar").click(function(evento){
+      //alert($("#tabla >tbody >tr").is(":empty"));
+      var filas=$("#tabla >tbody >tr").is(":empty");
+      var van=0;
+      if(filas==true){
+         mensaje("No ha asignado materias");
+        $("#mensaje").css("color","#000");
+        van=1;
+      }else{
+        if(van==1){
+
+        }else{
+          if ($("#tabla >tbody >tr").length >= 1){
+        mensaje("Asignación guardada correctamente");
+        $("#mensaje").css("color","#000");
+          
+      }else{
+        mensaje("No ha asignado materias");
+        $("#mensaje").css("color","#000");
+        
+      }
+
+        }
+        
+      }
+
+      
+                        
+     });
+
+      $("#btnRestablecer").click(function(evento){
+
+              $("#mensaje").load("resources/php/ControlProfesorMateria.php",{licenciatura:$("#miCombo option:selected").text(),operacion:"RestablecerMaterias"},function () {
+                        mensaje("Materias restablecidas exitosamente");
+                        $("#mensaje").css("color","#000");
+
+                       cargarTablaMaerias();             
+                        cleanTxt();
+                      });
+
+      });
+
+      $("#txtCicloEscolar").change(function(){
+                var op = $(this).find("option:selected").val();
+               // alert(op);
+                if(op==0){
+                   //alert("si es cero");
+                   $("#combo").append("<input type='text' id='InsertCicloEscolar' class='form-control' placeholder='Introduzca ciclo escolar'   title='Introduzca un ciclo escolar correcto'  pattern='[0-9]{4}[\-][0-9]{4}[A-B]' required>");
+                   $("#txtCicloEscolar").attr('disabled', 'disabled');
+                   $("#txtCicloEscolar").hide();
+                  //$( "div.txtCicloEscolar").replaceWith("<input type='text' id='InsertCicloEscolar'>");
+                }else{
+                  $("#InsertCicloEscolar").hide();
+                }
+        });
+
+         $('ul.nav li.dropdown').hover(function() {
+        $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
+      }, function() {
+        $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
+      });
+
+
+
+      });
+
+  function cargarTabla()
+  {
+    $("#cuerpo").load("resources/php/ControlProfesorMateria.php",{idmaestro:$("#txtidNomina").val(),cicloEscolar:$("#txtCicloEscolar option:selected").text(),operacion:"buscarMateria"},function (responseText, textStatus, XMLHttoRequest) {
+
+                          if(textStatus == "success")
+                              {
+                                //eliminarDatos();
+                              }
+                          
+                });
+  
+
+  }
+
+
+   function cargarTablaDos()
+  {
+    $("#cuerpo").load("resources/php/ControlProfesorMateria.php",{idmaestro:$("#txtidNomina").val(),cicloEscolar:$("#InsertCicloEscolar").val(),operacion:"buscarMateria"},function (responseText, textStatus, XMLHttoRequest) {
+
+                          if(textStatus == "success")
+                              {
+                                //eliminarDatos();
+                              }
+                          
+                });
+  
+
+  }
+
+
+  function cargarTablaMaerias(){
+
+     $("#cuerpoM").load("resources/php/ControlProfesorMateria.php",{licenciatura:$("#miCombo option:selected").text(),semestre: $("#ComboSemestre option:selected").val(), operacion:"buscarMatCarrera"},function (responseText, textStatus, XMLHttoRequest) {
+
+                          if(textStatus == "success")
+                              {
+                                //eliminarDatos();
+                              }
+                          
+                });
+
+  }
+
+  
+
+
+  function CargarMateria(){
+
+     $("#cuerpoM").load("resources/php/ControlProfesorMateria.php",{licenciatura:'Informatica',semestre:'1',operacion:"buscarMatCarrera"},function (responseText, textStatus, XMLHttoRequest) {
+
+                          if(textStatus == "success")
+                              {
+                                //eliminarDatos();
+                              }
+                          
+                });
+
+  }
+
+ </script>
+
+    </head>
+    <body onload="CargarMateria()">
+  
+    <header class="site-header" id="top">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="row">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                          <i class="fa fa-bars"></i>
+                        </button>
+                        <div class="logo-wrapper">
+                            <a class="navbar-brand" href="index.html">
+                                SGC<em>Unistmo</em>
+                                <span class="logo-s"></span>
+                            </a>
+                        </div>  
+                    </div>
+                    <div class="collapse navbar-collapse" id="main-menu">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="index.html">Cerrar Sesion</a>
+
+                            </li>
+                            <li><a href="VistaConfiguracion.html">Configuración</a></li>
+
+                            <li class="dropdown"><a href="VistaAdministrador.html"  class="dropdown-toggle" data-toggle="dropdown">Menu <b class="caret"></b> </a>
+                              <ul class="dropdown-menu">
+                                 <li><a href="VistaAdministrador.html" >Vista Principal</a></li>
+                                <li class="divider"></li>
+                                <li><a href="VistaAdministradorAlumno.html">Alumno</a></li>
+                                <li class="divider"></li>
+                                <li><a href="VistaAdministradorProfesor.html">Profesor</a></li>
+                                <li class="divider"></li>
+                                <li><a href="VistaAdministradorProfesorMateria.html">Asignar materias</a></li>
+                                <li class="divider"></li>
+                                <li><a href="VistaSubirArchivos.html">Subir archivos</a></li>
+                              </ul>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div> 
+            </div>
+        </nav>
+    </header>
+
+
+ <div  id="claseboton" class="boton"><p id="mensaje2"></p></div>
+
+
+    <div class="main-content">
+
+      <div class="container margen">
+       <div class="col-md-12 col-sm-12 col-xs-12">
+                
+                <h3 id="sesion" style="text-align: right; margin-right: 0px; "></h3>
+              
+          </div>  
+
+            <br>
+          <div class="container" style="margin-top: 50px;">
+              <div class="panel-group">
+                <div class="panel panel-primary">
+                  <div class="panel-heading"><center><h3>Asignación de materias</h3></center></div>
+                  <div class="panel-body">
+
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                  <div class="col-md-4 col-xs-12 col-sm-4">
+                                    
+                                    <form class="form-horizontal" id="cambio1" style="margin-top: 12px;">
+                                         <div class="form-group">
+                                            <label class="control-label col-xs-3" style="text-align: left;">Nomina:</label>
+                                           
+                                           
+                                             <div class="col-lg-9 col-sm-9 col-xs-12 col-md-9">
+                                                <div class="input-group">
+                                                  <input type="text" placeholder="Introduzca la nomina" class="form-control" id="txtidNomina" title="Introduzca un num. de nomina correcto, solo números"  pattern="[0-9]{3}" required>
+                                                  <span class="input-group-btn">
+                                                    <button class="btn btn-primary" type="button" id="btnBuscar">
+                                                        <span class="glyphicon glyphicon-search"></span>  </button>
+                                                  </span>
+                                                </div>
+                                              </div>
+
+                                              <div id="mensaje0" class="errores"> Solo se aceptan números</div>
+
+                                              <div class="form-group" >
+                                                <label class="control-label col-xs-3" style="text-align: right; margin-top: 55px;">Carrera:</label>
+                                                <div class="col-xs-9">
+                                                    
+                                                    <select id ="miCombo" class = "form-control input-sm" style=" margin-top: 55px;">
+                                                       <option  value = "1">Informatica</option>
+                                                       <option  value = "2">Ciencias Empresariales</option>
+                                                       <option  value = "3">Administración Pública</option>
+                                                       <option  value = "4">Derecho</option>
+                                                    </select>
+
+                                                </div>
+                                            </div>
+
+
+                        
+                                        </div>
+
+                                       
+                                      </form>
+
+                                      <table class="table table-hover" >
+                                          <thead>
+                                            <tr>
+                                              <th>Código </th>
+                                              <th>Nombre </th>
+                                              
+                                            </tr>
+                                          </thead>
+                                          <tbody  id="cuerpoM" >
+                                           
+
+                                          </tbody>
+                                                  
+                                    </table>
+                                      
+                                        
+
+                                  </div>
+
+                                  <div class="col-md-4 col-xs-12 col-sm-4" >
+                                <div  id="claseboton2" class="boton2"><p id="mensajeBus" class="men2"></p></div>
+
+                                    <form class="form-horizontal" style="margin-top: 0px;">
+                                            <div class="form-group">
+                                            <label class="control-label col-xs-3" style="text-align: left;">Nombre completo:</label>
+                                            <div class="col-xs-9">
+                                                <input type="text" class="form-control" placeholder="Nombre completo" id="txtNombre" disabled >
+                                            </div>
+                                        </div> 
+
+                                         <div class="form-group" style=" margin-top: 43px;">
+                                          <label class="control-label col-xs-3" >Semestre:</label>
+                                          <div class="col-xs-9">
+                                              
+                                          <select id="ComboSemestre" class = "form-control input-sm">
+                                           <option value = "1">Primero</option>
+                                           <option value = "2">Segundo</option>
+                                           <option value = "3">Tercero</option>
+                                           <option value = "4">Cuarto</option>
+                                           <option value = "5">Quinto</option>
+                                           <option value = "6">Sexto</option>
+                                           <option value = "7">Septimo</option>
+                                           <option value = "8">Octavo</option>
+                                           <option value = "9">Noveno</option>
+                                           <option value = "10">Decimo</option>
+
+                                        </select>
+                                          </div>
+                                      </div>
+                                                
+
+                                    </form>
+
+                                    <table class="table table-hover" id="tabla" style="margin-top: 30px;">
+                                                  <thead>
+                                                    <tr>
+                                                      <th colspan = 2>Materias asignadas</th>
+                                                      
+                                                    </tr>
+                                                  </thead>
+                                                  <tbody id="cuerpo">
+                                                   
+
+                                                  </tbody>
+                                                  
+                                                </table>
+                                        
+                                   
+                                  </div>
+
+                                <div class="col-md-4 col-xs-12 col-sm-4">
+                                   <form class="form-horizontal" id="cambio2" style="margin-top: 10px;">
+                                       <div class="form-group">                                       
+                                        
+                                            <label class="control-label col-xs-3" style="text-align: left;">Ciclo escolar:</label>
+                                            <div class="col-xs-9" id="combo">
+                                              
+                                              <select id="txtCicloEscolar" class = "form-control input-sm">
+                                              
+
+                                               <option id="A" value = "1"></option>
+                                               <option id="B" value = "2"></option>
+                                               <option id="other" value="0">Other</option>
+
+
+                                             </select>
+
+                                            </div>
+
+                                                                                       
+                                              <div id="mensaje1" class="errores">ej: 2015-2016A</div>
+                        
+                                        
+
+                                        </div>
+
+                                   </form>
+
+                                 
+
+                                </div>
+                                
+
+
+                                 
+                                </div>
+                          
+                            
+
+                  </div>
+
+                  <div class="col-md-12 col-sm-12 col-xs-12">
+                                  <div class="col-md-4 col-xs-12 col-sm-4"></div>
+
+                                  <div class="col-md-4 col-xs-12 col-sm-4">
+                                   <center>
+                                      <button type="button" id="btnGuardar" class="btn btn-success">
+                                          <span class=" glyphicon glyphicon-floppy-disk"></span> Guadar</button>
+                                   </center>
+                                     
+                                 
+
+                                  </div>
+
+                                   <div class="col-md-4 col-xs-12 col-sm-4"> 
+
+                                         <div class="form-group" style="margin-right: 20px; float: right;">
+                                            <div class="col-xs-offset-3 col-xs-9">
+                                                <button type="button" class="btn btn-danger btn-sm" id="btnRestablecer" >
+                                                    <span class="glyphicon glyphicon-refresh"></span>  Restablecer materias</button>
+                                               
+                                               
+                                            </div>
+                                        </div>
+                                   </div>
+
+                          </div>
+
+
+                          <div class="col-md-12 col-sm-12 col-xs-12">
+                                  <div class="col-md-4 col-xs-12 col-sm-4"></div>
+
+                                  <div class="col-md-4 col-xs-12 col-sm-4">
+                                   
+                                      <div  id="claseboton" class="boton2"><p id="mensaje" class="men"></p></div>
+                                 
+
+                                  </div>
+
+                                   <div class="col-md-4 col-xs-12 col-sm-4"></div>
+
+                          </div>
+                          
+                </div>
+
+              </div>
+            </div>
+
+       
+
+      </div><!-- container END -->
+      
+    </div><!-- main content END -->
+
+      <footer id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-sm-12 ">
+                    <p class="copyright">Copyright &copy; 2015 <a href="#">Universidad del Istmo</a></p>
+                </div>
+                <div class="col-md-6 col-sm-6 col-sm-12">
+                    <ul class="social">
+                        <li><a href="#" class="fa fa-facebook"></a></li>
+                        <li><a href="#" class="fa fa-twitter"></a></li>
+                
+                    </ul>
+                </div>
+              </div>
+            </div>
+      </footer> 
+        <script src="resources/plantilla/js/vendor/jquery-1.11.0.min.js"></script>
+        <script>window.jQuery || document.write('<script src="resources/plantilla/js/vendor/jquery-1.11.0.min.js"><\/script>')</script>
+        <script src="resources/plantilla/js/vendor/bootstrap.js"></script>
+        <script src="resources/plantilla/js/main.js"></script>
+    </body>
+</html>

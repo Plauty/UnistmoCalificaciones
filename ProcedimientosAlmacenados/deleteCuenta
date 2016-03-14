@@ -1,0 +1,4 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteCuenta`(in us varchar(20), in contraseña varchar(15), in idAlum varchar(10), in idMaes varchar(3))
+BEGIN
+		delete from cuentas where usuario=us;
+END

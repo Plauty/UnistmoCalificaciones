@@ -1,0 +1,3 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `UPDATE_CALIFICACIONES`( IN Idcalificacionesup  Varchar(45) , IN 1ºparcialup double, IN 2ºparcialup double, IN 3ºparcialup double, IN Ordinarioup double, IN 1ºextraordinarioup double, IN 2ºextraordinarioup double, IN Especialup double, IN Promedioup double)
+BEGIN 
+ UPDATE calificaciones SET idcalificaciones=Idcalificacionesup ,1ºparcial=1ºparcialup ,2ºparcial=2ºparcialup ,3ºparcial=3ºparcialup ,ordinario=Ordinarioup ,1ºextraordinario=1ºextraordinarioup ,2ºextraordinario=2ºextraordinarioup ,especial=Especialup ,promedio=TRUNCATE(Promedioup,2)    WHERE idcalificaciones=Idcalificacionesup ; END

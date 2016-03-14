@@ -1,0 +1,6 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteMateriaAsignado`(in idmat varchar(10))
+BEGIN
+	delete from maestro_materia where idMateria=idmat;
+    update materias set asignado='false' where idmaterias=idmat;
+    
+END
